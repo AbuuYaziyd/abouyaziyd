@@ -3,6 +3,7 @@
             <div class="container">
                 <!-- About Section Heading-->
                 <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+                <h6 class="page-section-heading6 text-center text-uppercase text-white">hjbfkjsnfbebkjsrf</h6>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -16,7 +17,7 @@
                 </div>
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
-                    <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/theme/freelancer/">
+                    <a class="btn btn-xl btn-outline-light" href="#">
                         <i class="fas fa-download me-2"></i>
                         Free Download!
                     </a>
