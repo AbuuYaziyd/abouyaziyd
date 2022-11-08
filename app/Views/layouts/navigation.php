@@ -9,10 +9,14 @@
                 <a href="<?= base_url() ?>" class="navbar-brand mx-auto mx-lg-0"><?= lang('app.appName') ?></a>
 
                 <div class="d-flex align-items-center d-lg-none">
-                    <i class="navbar-icon bi-telephone-plus me-3"></i>
-                    <a class="custom-btn btn" href="#contact">
-                        120-240-9600
-                    </a>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn custom-btn custom-link btn-secondary">
+                            <i class="bi bi-whatsapp"></i>
+                        </button>
+                        <button type="button" class="btn custom-btn custom-link btn-secondary">
+                            <i class="bi bi-telephone-outbound"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -39,10 +43,14 @@
                     </ul>
 
                     <div class="d-lg-flex align-items-center d-none ms-auto">
-                        <i class="navbar-icon bi-telephone-plus me-3"></i>
-                        <a class="custom-btn btn" href="#contact">
-                            120-240-9600
-                        </a>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn custom-btn btn-secondary">
+                                <i class="bi bi-whatsapp"></i>
+                            </button>
+                            <button type="button" class="btn custom-btn btn-secondary">
+                                <i class="bi bi-telephone-outbound"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
