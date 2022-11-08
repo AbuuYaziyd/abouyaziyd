@@ -1,71 +1,156 @@
 
-        <section class="page-section" id="contact">
-            <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Me</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Contact Section Form-->
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-xl-7">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Name input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                            <!-- Message input-->
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+            <section class="contact section-padding" id="contact">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-8 col-12">
+                                <div class="section-title-wrap d-flex justify-content-center align-items-center mb-5">
+                                    <img src="<?= base_url('assets/images/aerial-view-man-using-computer-laptop-wooden-table.jpg') ?>" class="avatar-image img-fluid" alt="">
+
+                                    <h2 class="text-white ms-4 mb-0">Say Hi</h2>
                                 </div>
                             </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            <!-- Submit Button-->
-                            <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
-                        </form>
+
+                            <div class="clearfix"></div>
+
+                            <div class="col-lg-3 col-md-6 col-12 pe-lg-0">
+                                <div class="contact-info contact-info-border-start d-flex flex-column">
+                                    <strong class="site-footer-title d-block mb-3">Services</strong>
+
+                                    <ul class="footer-menu">
+                                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Websites</a></li>
+
+                                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Branding</a></li>
+
+                                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">Ecommerce</a></li>
+
+                                        <li class="footer-menu-item"><a href="#" class="footer-menu-link">SEO</a></li>
+                                    </ul>
+
+                                    <strong class="site-footer-title d-block mt-4 mb-3">Stay connected</strong>
+
+                                    <ul class="social-icon">
+                                        <li class="social-icon-item"><a href="https://twitter.com/minthu" class="social-icon-link bi-twitter"></a></li>
+
+                                        <li class="social-icon-item"><a href="#" class="social-icon-link bi-instagram"></a></li>
+
+                                        <li class="social-icon-item"><a href="#" class="social-icon-link bi-pinterest"></a></li>
+
+                                        <li class="social-icon-item"><a href="https://www.youtube.com/templatemo" class="social-icon-link bi-youtube"></a></li>
+                                    </ul>
+
+                                    <strong class="site-footer-title d-block mt-4 mb-3">Start a project</strong>
+
+                                    <p class="mb-0">I’m available for freelance projects</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-12 ps-lg-0">
+                                <div class="contact-info d-flex flex-column">
+                                    <strong class="site-footer-title d-block mb-3">About</strong>
+
+                                    <p class="mb-2">
+                                        Joshua is a professional web developer. Feel free to get in touch with me.
+                              </p>
+
+                                    <strong class="site-footer-title d-block mt-4 mb-3">Email</strong>
+
+                                    <p>
+                                        <a href="mailto:hello@josh.design">
+                                            hello@josh.design
+                                        </a>
+                                    </p>
+
+                                    <strong class="site-footer-title d-block mt-4 mb-3">Call</strong>
+
+                                    <p class="mb-0">
+                                        <a href="tel: 120-240-9600">
+                                            120-240-9600
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-12 mt-5 mt-lg-0">
+                                <form action="#" method="get" class="custom-form contact-form" role="form">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="form-floating">
+                                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
+                                                
+                                                <label for="floatingInput">Name</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6 col-12"> 
+                                            <div class="form-floating">
+                                                <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
+                                                
+                                                <label for="floatingInput">Email address</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 col-6">
+                                            <div class="form-check form-check-inline">
+                                                <input name="website" type="checkbox" class="form-check-input" id="inlineCheckbox1" value="1">
+
+                                                <label class="form-check-label" for="inlineCheckbox1">
+                                                    <i class="bi-globe form-check-icon"></i>
+                                                    <span class="form-check-label-text">Websites</span>
+                                                </label>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 col-6">
+                                            <div class="form-check form-check-inline">
+                                                <input name="branding" type="checkbox" class="form-check-input" id="inlineCheckbox2" value="1">
+
+                                                <label class="form-check-label" for="inlineCheckbox2">
+                                                    <i class="bi-lightbulb form-check-icon"></i>
+                                                    <span class="form-check-label-text">Branding</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 col-6">
+                                            <div class="form-check form-check-inline">
+                                                <input name="ecommerce" type="checkbox" class="form-check-input" id="inlineCheckbox3" value="1">
+
+                                                <label class="form-check-label" for="inlineCheckbox3">
+                                                    <i class="bi-phone form-check-icon"></i>
+                                                    <span class="form-check-label-text">Ecommerce</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 col-6">
+                                            <div class="form-check form-check-inline me-0">
+                                                <input name="seo" type="checkbox" class="form-check-input" id="inlineCheckbox4" value="1">
+
+                                                <label class="form-check-label" for="inlineCheckbox4">
+                                                    <i class="bi-google form-check-icon"></i>
+                                                    <span class="form-check-label-text">SEO</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-12">
+                                            <div class="form-floating">
+                                                <textarea class="form-control" id="message" name="message" placeholder="Tell me about the project"></textarea>
+                                                
+                                                <label for="floatingTextarea">Tell me about the project</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-12 ms-auto">
+                                            <button type="submit" class="form-control">Send</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
