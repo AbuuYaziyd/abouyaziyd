@@ -10,6 +10,8 @@
 
         <!-- CSS FILES -->
         <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/images/logo/favicon.ico') ?>">
+        <link rel="apple-touch-icon" href="<?= base_url('assets/images/logo/logo.png') ?>">
         <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/css/bootstrap-icons.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/css/magnific-popup.css') ?>" rel="stylesheet">

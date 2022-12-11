@@ -22,23 +22,23 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-5">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#home">Home</a>
+                            <a class="nav-link click-scroll" href="#home"><?= lang('app.home') ?></a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#about">About</a>
+                            <a class="nav-link click-scroll" href="#about"><?= lang('app.about') ?></a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#services">Services</a>
+                            <a class="nav-link click-scroll" href="#services"><?= lang('app.services') ?></a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#project">Projects</a>
+                            <a class="nav-link click-scroll" href="#project"><?= lang('app.projects') ?></a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#contact">Contact</a>
+                            <a class="nav-link click-scroll" href="#contact"><?= lang('app.contact') ?></a>
                         </li>
                     </ul>
 
@@ -46,6 +46,9 @@
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" class="btn custom-btn btn-secondary">
                                 <i class="bi bi-whatsapp"></i>
+                            </button>
+                            <button type="button" class="btn custom-btn btn-secondary">
+                                <i class="bi bi-translate"></i>
                             </button>
                             <button type="button" class="btn custom-btn btn-secondary">
                                 <i class="bi bi-telephone-outbound"></i>
