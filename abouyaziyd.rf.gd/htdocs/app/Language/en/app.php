@@ -9,7 +9,7 @@ return [
     'hello' => 'Hello friend!',
     'availability' => 'I’m available for freelance work.',
     'letsBegin' => 'Let\'s begin',
-    'hello' => 'Hello friend!',
+    'copyright' => 'Copyright',
     
     // Navigantion
     'home' => 'Home',

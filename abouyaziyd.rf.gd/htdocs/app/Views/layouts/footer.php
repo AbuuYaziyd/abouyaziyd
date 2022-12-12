@@ -18,6 +18,7 @@
                         <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://twitter.com/abouyaziyd"><i class="fab fa-fw fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://instagram.com/abouyaziyd"><i class="fab fa-fw fa-instagram"></i></a>
                         <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="https://wa.me/255772302739"><i class="fab fa-fw fa-whatsapp"></i></a>
+                        <a class="btn btn-outline-light btn-social mx-1" target="_blank" href="mailto:abouyaziyd@gmail.com"><i class="fas fa-envelope"></i></a>
                     </div>
                     <!-- Footer About Text-->
                     <div class="col-lg-4">
@@ -32,5 +33,5 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; Your Website 2022</small></div>
+            <div class="container"><small><?= lang('app.copyright') ?> &copy; <a href="<?= base_url() ?>" style="text-decoration: none;" target="_blank"><?= lang('app.appName') ?></a> <?= date('Y') ?></small></div>
         </div>
