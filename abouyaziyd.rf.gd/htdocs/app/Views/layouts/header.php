@@ -2,7 +2,6 @@
         <header class="masthead bg-primary text-white text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <!-- <img class="masthead-avatar mb-5" src="<?= base_url('assets/img/avataaars.svg') ?>" alt="img" /> -->
                 <img class="masthead-avatar mb-5" src="<?= base_url('assets/logo.svg') ?>" alt="img" />
                 <!-- Masthead Heading-->
                 <h1 class="masthead-heading text-uppercase mb-0"><?= lang('app.appName') ?></h1>
