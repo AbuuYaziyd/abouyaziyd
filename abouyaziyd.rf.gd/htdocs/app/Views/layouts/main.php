@@ -7,7 +7,7 @@
         <meta name="author" content="abouyaziyd" />
         <title><?= lang('app.appName') ?></title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="<?= base_url('assets/favicon.ico') ?>" />
+        <link rel="icon" type="image/x-icon" href="<?= base_url('assets/favicon.svg') ?>" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
