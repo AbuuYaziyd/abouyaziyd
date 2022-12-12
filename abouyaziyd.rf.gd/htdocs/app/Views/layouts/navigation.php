@@ -1,61 +1,17 @@
 
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
                 </button>
-
-                <a href="<?= base_url() ?>" class="navbar-brand mx-auto mx-lg-0"><?= lang('app.appName') ?></a>
-
-                <div class="d-flex align-items-center d-lg-none">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn custom-btn custom-link btn-secondary">
-                            <i class="bi bi-whatsapp"></i>
-                        </button>
-                        <button type="button" class="btn custom-btn custom-link btn-secondary">
-                            <i class="bi bi-telephone-outbound"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-lg-5">
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#home"><?= lang('app.home') ?></a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#about"><?= lang('app.about') ?></a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#services"><?= lang('app.services') ?></a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#project"><?= lang('app.projects') ?></a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#contact"><?= lang('app.contact') ?></a>
-                        </li>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
                     </ul>
-
-                    <div class="d-lg-flex align-items-center d-none ms-auto">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn custom-btn btn-secondary">
-                                <i class="bi bi-whatsapp"></i>
-                            </button>
-                            <button type="button" class="btn custom-btn btn-secondary">
-                                <i class="bi bi-translate"></i>
-                            </button>
-                            <button type="button" class="btn custom-btn btn-secondary">
-                                <i class="bi bi-telephone-outbound"></i>
-                            </button>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </nav>
