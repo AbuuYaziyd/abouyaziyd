@@ -18,4 +18,5 @@ return [
     'projects' => 'Projects',
     'contact' => 'Contact',
     'menu' => 'Menu',
+    'callMe' => 'Call Me',
 ];
