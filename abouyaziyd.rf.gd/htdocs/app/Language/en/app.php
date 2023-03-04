@@ -9,15 +9,17 @@ return [
     'hello' => 'Hello friend!',
     'availability' => 'I’m available for freelance work.',
     'letsBegin' => 'Let\'s begin',
+    'createdBy' => 'Created By',
     'copyright' => 'Copyright',
+    'copyrights' => 'Copyrights',
     'view' => 'View',
+    'visit' => 'Visit',
     'viewAll' => 'View All',
     
     // Navigantion
     'home' => 'Home',
     'about' => 'About',
     'services' => 'Services',
-    'projects' => 'Projects',
     'contact' => 'Contact',
     'menu' => 'Menu',
     'callMe' => 'Call Me',
@@ -39,15 +41,24 @@ return [
     'categories' => 'Categories',
     'name' => 'Name',
     
-    // Product
-    'product' => 'Product',
-    'products' => 'Products',
+    // Project
+    'project' => 'Project',
+    'projectName' => 'Project Name',
+    'projectLink' => 'Project Link',
+    'projectInfo' => 'Project Information',
+    'projects' => 'Projects',
 
     // CRUD
     'edit' => 'Edit',
     'add' => 'Add',
+    'link' => 'Link',
     'submit' => 'Submit',
+    'successfully' => 'Successfully',
+    'select' => 'Select',
+    'status' => 'Status',
     'image' => 'Image',
     'delete' => 'Delete',
+    'done' => 'Done',
+    'notDone' => 'Not Done',
     'desc' => 'Description',
 ];

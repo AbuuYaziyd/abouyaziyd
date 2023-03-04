@@ -28,10 +28,12 @@ class Home extends BaseController
     public function projects($id)
     {
         $pr = new Project();
+        $cat = new Category();
 
         $data['title'] = lang('app.projects');
+        $data['cat'] = $cat->find($id);
         $data['pr'] = $pr->where('cat_id', $id)->findAll();
-        dd($data);
+        // dd($data);
 
         return view('home/projects', $data);
     }

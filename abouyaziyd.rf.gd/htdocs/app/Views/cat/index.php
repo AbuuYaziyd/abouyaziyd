@@ -26,7 +26,7 @@
                   <tr>
                     <td><?= $key+1 ?></td>
                     <td><?= $dt['name'] ?></td>
-                    <td><img class="direct-chat-img" src="<?= $dt['cat_img'] ?>" alt="message user image"></td>
+                    <td><img class="direct-chat-img" src="<?= $dt['cat_img'] ?>" alt="category-<?= $key+1 ?>"></td>
                     <td><?= substr($dt['info'], 0, 30) ?>...</td>
                     <td>
                       <a href="<?= base_url("cat/show/" . $dt['id']) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> <?= lang('app.edit') ?></a>

@@ -14,7 +14,14 @@ class Project extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'name',
+        'cat_id',
+        'pr_img',
+        'info',
+        'status',
+        'link',
+    ];
 
     // Dates
     protected $useTimestamps = false;

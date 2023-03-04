@@ -12,11 +12,11 @@ class ProjectController extends BaseController
     {
         $pr = new Project();
 
-        $data['title'] = lang('app.products');
+        $data['title'] = lang('app.projects');
         $data['pr'] = $pr->findAll();
         // dd($data);
 
-        return view('product/index', $data);
+        return view('project/index', $data);
     }
 
     public function add()
@@ -25,11 +25,11 @@ class ProjectController extends BaseController
         
         $cat = new Category();
 
-        $data['title'] = lang('app.products');
+        $data['title'] = lang('app.projects');
         $data['cat'] = $cat->findAll();
         // dd($data);
 
-        return view('product/add', $data);
+        return view('project/add', $data);
     }
 
     public function create()
@@ -37,14 +37,12 @@ class ProjectController extends BaseController
         helper('form');
 
         $pr = new Project();
-        $featured = $pr->where('featured>',0)->countAllResults();
-        // dd($featured);
         // dd($this->request->getVar());
         // dd(!empty($_FILES['pr_img']['name']));
         $valid = $this->validate(
             [
-                'pr_img' => 'mime_in[img,image/jpg,image/jpeg,image/png]|max_size[pr_img,2048]',
-                'name' => 'required|is_unique[categories.name]',
+                'pr_img' => 'mime_in[pr_img,image/jpg,image/jpeg,image/png]|max_size[pr_img,2048]',
+                'name' => 'required|is_unique[projects.name]',
                 'cat_id' => 'required',
             ],
             [   // Errors
@@ -61,13 +59,13 @@ class ProjectController extends BaseController
                 ],
             ]);
 
-        $plc = 'assets/images/products/';
-        $loc = 'assets/images/product-1.jpg';
+        $plc = 'assets/img/project/';
+        $loc = 'assets/demo/no-image.png';
         // dd($valid);
         
         if (!$valid) {
 
-            $data['title'] = lang('app.categories');
+            $data['title'] = lang('app.projects');
             $data['errors'] = $this->validator->getErrors();
             // dd($data);
 
@@ -86,17 +84,17 @@ class ProjectController extends BaseController
 
         $d = [
             'cat_id' => $this->request->getVar('cat_id'),
-            'price' => $this->request->getVar('price'),
+            'info' => $this->request->getVar('info'),
+            'status' => $this->request->getVar('status'),
+            'link' => $this->request->getVar('link'),
             'name' => $this->request->getVar('name'),
-            'measure' => '@'.($this->request->getVar('measure')??'Kg'),
             'pr_img' => $loc,
-            'featured' => ($featured<8?$featured+1:0),
         ];
         // dd($d);
 
         $pr->save($d);
 
-        return redirect()->to('product')->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
+        return redirect()->to('project')->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
     }
     
     public function show($id)
@@ -106,12 +104,12 @@ class ProjectController extends BaseController
         $cat = new Category();
         $pr = new Project();
 
-        $data['title'] = lang('app.categories');
+        $data['title'] = lang('app.project');
         $data['cat'] = $cat->findAll();
         $data['pr'] = $pr->find($id);
         // dd($data);
 
-        return view('product/show', $data);
+        return view('project/show', $data);
     }
 
     public function edit($id)
@@ -120,12 +118,12 @@ class ProjectController extends BaseController
 
         $pr = new Project();
 
-        $product = $pr->find($id);
+        $project = $pr->find($id);
         // dd($this->request->getVar());
         // dd(!empty($_FILES['pr_img']['name']));
         $valid = $this->validate(
             [
-                'pr_img' => 'mime_in[img,image/jpg,image/jpeg,image/png]|max_size[pr_img,2048]',
+                'pr_img' => 'mime_in[pr_img,image/jpg,image/jpeg,image/png]|max_size[pr_img,2048]',
                 'name' => 'required',
             ],
             [   // Errors
@@ -141,33 +139,21 @@ class ProjectController extends BaseController
         // dd($valid);
         if (!$valid) {
 
-            $data['title'] = lang('app.categories');
+            $data['title'] = lang('app.projects');
             $data['errors'] = $this->validator->getErrors();
             // dd($data);
 
             return redirect()->back()->with('icon', 'error')->with('title', $data['errors']);
         }
-        // Where to save the Image
-        $plc = 'assets/images/product/';
-        // Default Image if Image is not Set!
-        $loc = 'assets/images/product-1.jpg';
-
-        // Featured
-        $fe = $this->request->getVar('featured');
-        if ($fe!=$product['featured'] && $fe!=0) {
-            $ch = $pr->where('featured', $fe)->first();
-            if ($ch) {
-                $f = ['featured' => 0];
-
-                $pr->update($ch['id'],$f);
-            }
-        }
+        
+        $plc = 'assets/img/project/';
+        $loc = $project['pr_img']??'assets/demo/no-image.png';
 
         if (!empty($_FILES['pr_img']['name'])) {
-            // dd(file_exists($product['pr_img']));
-            if (file_exists($product['pr_img'])) {
+            // dd(file_exists($project['pr_img']));
+            if (file_exists($project['pr_img'])) {
 
-                unlink($product['pr_img']);
+                unlink($project['pr_img']);
 
                 $img = $this->request->getFile('pr_img');
                 $ext = $img->getClientExtension();
@@ -189,17 +175,17 @@ class ProjectController extends BaseController
 
         $d = [
             'cat_id' => $this->request->getVar('cat_id'),
-            'price' => $this->request->getVar('price'),
+            'info' => $this->request->getVar('info'),
+            'status' => $this->request->getVar('status'),
+            'link' => $this->request->getVar('link'),
             'name' => $this->request->getVar('name'),
-            'measure' => $this->request->getVar('measure')??'@Kg',
             'pr_img' => $loc,
-            'featured' => $fe,
         ];
         // dd($d);
 
         $pr->update($id, $d);
 
-        return redirect()->to('product')->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
+        return redirect()->to('project')->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
     }
 
     public function delete($id)
@@ -208,6 +194,6 @@ class ProjectController extends BaseController
 
         $pr->delete($id);
         
-        return redirect()->to('product')->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
+        return redirect()->to('project')->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
     }
 }
