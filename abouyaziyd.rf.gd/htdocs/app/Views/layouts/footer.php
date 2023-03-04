@@ -24,7 +24,7 @@
                     <div class="col-lg-4">
                         <h4 class="text-uppercase mb-4"><?= lang('app.appName') ?></h4>
                         <p class="lead mb-0">
-                            Freelance is a free to use, MIT licensed Bootstrap theme created by
+                            I'm a Freelancer, feel free to contact me! Hope I'll make your dreams come true!
                             <a href="<?= base_url() ?>">Abou Yaziyd</a>
                         </p>
                     </div>
