@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/main') ?>
+<?= $this->extend('layouts/app') ?>
 <?= $this->section('content') ?>
 
 <div class="content-header"></div>
@@ -9,16 +9,7 @@
           <section class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3>
-                  <b><?= lang('app.edit') ?> <?= lang('app.category') ?></b>
-                  <div class="float-right col-4">
-                  <select name="featured" class="custom-select">
-                    <?php for ($i=0; $i < 7; $i++) : ?>
-                      <option value="<?= $i ?>" <?= ($i+1==$cat['featured']?'selected':'') ?>><?= $i==0?lang('app.notFeatured'):lang('app.featured').' - '.$i ?></option>
-                    <?php endfor ?>
-                  </select>
-                  </div>
-                </h3>
+                <h3><b><?= lang('app.edit') ?> <?= lang('app.category') ?></b></h3>
               </div>
               <div class="card-body">
                 <div class="row">
@@ -28,7 +19,12 @@
                         <input type="text" class="form-control" name="name" value="<?= $cat['name'] ?>">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputBorder"><?= lang('app.img') ?></label>
+                        <label for="exampleInputBorder"><?= lang('app.desc') ?></label>
+                        <textarea name="info" class="form-control" cols="30" rows="10"><?= $cat['info'] ?></textarea>
+                        <!-- <input type="text" class="form-control" name="info"> -->
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputBorder"><?= lang('app.image') ?></label>
                         <input type="file" class="form-control" name="cat_img">
                       </div>
                       <div class="row">

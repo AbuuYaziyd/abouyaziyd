@@ -14,7 +14,11 @@ class Category extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'cat_img',
+        'name',
+        'info',
+    ];
 
     // Dates
     protected $useTimestamps = false;

@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/main') ?>
+<?= $this->extend('layouts/app') ?>
 <?= $this->section('content') ?>
 
 <div class="content-header"></div>
@@ -16,7 +16,8 @@
                 <tr>
                   <th>#</th>
                   <th><?= lang('app.category') ?></th>
-                  <th><?= lang('app.featured') ?></th>
+                  <th><?= lang('app.image') ?></th>
+                  <th><?= lang('app.desc') ?></th>
                   <th><?= lang('app.edit') ?></th>
                 </tr>
               </thead>
@@ -24,8 +25,9 @@
                 <?php foreach ($cat as $key => $dt) : ?>
                   <tr>
                     <td><?= $key+1 ?></td>
-                    <td><?= $dt['name'] ?></td>
-                    <td><span class="badge badge-<?= $dt['featured']>0?'info':'danger' ?>"><?= $dt['featured']>0?lang('app.featured'):lang('app.notFeatured') ?></span></td>
+                    <td><span class="badge badge-info"><?= $dt['name'] ?></span></td>
+                    <td><img class="direct-chat-img" src="<?= $dt['cat_img'] ?>" alt="message user image"></td>
+                    <td><?= substr($dt['info'], 0, 30) ?>...</td>
                     <td>
                       <a href="<?= base_url("cat/show/" . $dt['id']) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> <?= lang('app.edit') ?></a>
                     </td>

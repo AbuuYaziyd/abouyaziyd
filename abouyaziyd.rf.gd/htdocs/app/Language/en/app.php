@@ -37,8 +37,17 @@ return [
     // Category
     'category' => 'Category',
     'categories' => 'Categories',
+    'name' => 'Name',
     
     // Product
     'product' => 'Product',
     'products' => 'Products',
+
+    // CRUD
+    'edit' => 'Edit',
+    'add' => 'Add',
+    'submit' => 'Submit',
+    'image' => 'Image',
+    'delete' => 'Delete',
+    'desc' => 'Description',
 ];

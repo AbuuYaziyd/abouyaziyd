@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/main') ?>
+<?= $this->extend('layouts/app') ?>
 <?= $this->section('content') ?>
 
 <div class="content-header"></div>
@@ -19,8 +19,8 @@
                       <input type="text" class="form-control" name="name" placeholder="<?= lang('app.name') ?>" value="<?= old('name') ?>">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputBorder"><?= lang('app.img') ?></label>
-                      <input type="file" class="form-control" name="cat_img" placeholder="<?= lang('app.img') ?>" value="<?= old('featured') ?>">
+                      <label for="exampleInputBorder"><?= lang('app.image') ?></label>
+                      <input type="file" class="form-control" name="cat_img" placeholder="<?= lang('app.image') ?>" value="<?= old('featured') ?>">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block"><?= lang('app.submit') ?></button>
                   </form>
