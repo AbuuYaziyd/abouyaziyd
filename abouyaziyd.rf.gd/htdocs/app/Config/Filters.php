@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\Auth;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -23,6 +24,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'auth'          => Auth::class,
     ];
 
     /**
@@ -34,7 +36,7 @@ class Filters extends BaseConfig
     public $globals = [
         'before' => [
             // 'honeypot',
-            // 'csrf',
+            'csrf',
             // 'invalidchars',
         ],
         'after' => [
@@ -57,8 +59,9 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $methods = [];
-
+    public array $methods = [
+        'post' => ['csrf'],
+    ];
     /**
      * List of filter aliases that should run on any
      * before or after URI patterns.
