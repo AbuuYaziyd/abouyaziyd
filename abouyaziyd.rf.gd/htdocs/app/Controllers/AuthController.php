@@ -3,9 +3,223 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\User;
 
 class AuthController extends BaseController
 {
+    public function register()
+    {
+        helper('form');
+        
+
+        $data['title'] = lang('app.signup');
+
+        return view('auth/register',$data);
+    }
+
+    public function reg()
+    {
+        if (session()->role == 'admin') {
+            helper('form');
+
+            $data['title'] = lang('app.signup');
+
+            return view('auth/reg', $data);
+        } else {
+            return redirect('/');
+        }
+        
+    }
+
+    public function secure()
+    {
+        dd($this->request->getVar());
+
+        helper('form');
+
+        $input = $this->validate(
+            [   //Rules
+                'name' => 'required|min_length[3]',
+                'lname' => 'required|min_length[3]',
+                'email' => 'required|valid_email|is_unique[users.email]',
+                'malaf' => 'required|is_unique[users.malaf]',
+                'nameArabic' => 'required',
+                'phone' => 'required|exact_length[12]|is_unique[users.phone]',
+                'sex' => 'required',
+                'dob' => 'required',
+                'city' => 'required',
+            ],
+            [   // Errors
+                'name' =>
+                [
+                    'required' => lang('error.required'),
+                    'min_length' => lang('error.min_length'),
+                ],
+                'lname' =>
+                [
+                    'required' => lang('error.required'),
+                    'min_length' => lang('error.min_length'),
+                ],
+                'email' => [
+                    'required' => lang('error.required'),
+                    'valid_email' => lang('error.valid_email'),
+                    'is_unique' => lang('error.is_unique'),
+                ],
+                'malaf' => [
+                    'required' => lang('error.required'),
+                    'is_unique' => lang('error.is_unique'),
+                ],
+                'nameArabic' => [
+                    'required' => lang('error.required'),
+                ],
+                'phone' => [
+                    'required' => lang('error.required'),
+                    'exact_length' => lang('error.exact_length'),
+                ],
+                'sex' => [
+                    'required' => lang('error.required'),
+                ],
+                'dob' => [
+                    'required' => lang('error.required'),
+                ],
+                'city' => [
+                    'required' => lang('error.required'),
+                ],
+            ]
+        );
+
+        if (!$input) {
+            $data['title'] = lang('app.register');
+            $data['validation'] = $this->validator;
+            echo view('auth/register', $data);
+        } else {
+
+            $user = new User();
+
+            $data = [
+                'name'       => strtoupper($this->request->getVar('name')),
+                'lname'      => strtoupper($this->request->getVar('lname')),
+                'email'      => $this->request->getVar('email'),
+                'password'   => password_hash(strtoupper($this->request->getVar('lname')), PASSWORD_DEFAULT),
+                'nameArabic' => $this->request->getVar('nameArabic'),
+                'city'       => $this->request->getVar('city'),
+                'malaf'      => $this->request->getVar('malaf'),//4mula
+                'phone'      => $this->request->getVar('phone'),
+                'sex'        => $this->request->getVar('sex'),
+                'dob'        => $this->request->getVar('dob'),
+                'role'       => 'user',
+                'fn'         => 'student',
+            ];
+
+            // dd($data);
+            $ok = $user->save($data);
+
+            if ($ok) {
+                $to = $this->request->getVar('email');
+                $subject = lang('app.welcome');
+                // $message = 'message';
+                $data['title'] = lang('app.welcome');
+                $message = view("email", $data);
+                // $data['id'] = $user->getInsertID();
+                // dd($data);
+                // return view('email', $data);
+
+                $email = \Config\Services::email();
+
+                $email->setTo($to);
+                $email->setFrom('markazomaribnkhattwab@gmail.com', lang('app.appName'));
+                $email->setSubject($subject);
+                $email->setMessage($message);
+
+                if ($email->send()) {
+                return redirect()->to('login')->with('type', 'success')->with('text', lang('app.successful').lang('app.useLast'))->with('title', lang('app.done'));
+                }
+            }
+        }
+    }
+
+
+    public function regNew()
+    {
+        // dd($this->request->getVar());
+
+        helper('form');
+
+        $input = $this->validate(
+            [   //Rules
+                'name' => 'required|min_length[3]',
+                'lname' => 'required|min_length[3]',
+                'malaf' => 'required|is_unique[users.malaf]',
+                'nameArabic' => 'required',
+                'sex' => 'required',
+            ],
+            [   // Errors
+                'name' =>
+                [
+                    'required' => lang('error.required'),
+                    'min_length' => lang('error.min_length'),
+                ],
+                'lname' =>
+                [
+                    'required' => lang('error.required'),
+                    'min_length' => lang('error.min_length'),
+                ],
+                'email' => [
+                    'required' => lang('error.required'),
+                    'valid_email' => lang('error.valid_email'),
+                    'is_unique' => lang('error.is_unique'),
+                ],
+                'malaf' => [
+                    'required' => lang('error.required'),
+                    'is_unique' => lang('error.is_unique'),
+                ],
+                'nameArabic' => [
+                    'required' => lang('error.required'),
+                ],
+                'phone' => [
+                    'required' => lang('error.required'),
+                    'exact_length' => lang('error.exact_length'),
+                ],
+                'sex' => [
+                    'required' => lang('error.required'),
+                ],
+                'dob' => [
+                    'required' => lang('error.required'),
+                ],
+                'city' => [
+                    'required' => lang('error.required'),
+                ],
+            ]
+        );
+
+        if (!$input) {
+            $data['title'] = lang('app.register');
+            $data['validation'] = $this->validator;
+            echo view('auth/register', $data);
+        } else {
+
+            $user = new User();
+
+            $data = [
+                'name'       => strtoupper($this->request->getVar('name')),
+                'lname'      => strtoupper($this->request->getVar('lname')),
+                'password'   => password_hash(strtoupper($this->request->getVar('lname')), PASSWORD_DEFAULT),
+                'nameArabic' => $this->request->getVar('nameArabic'),
+                'malaf'      => $this->request->getVar('malaf'), //4mula
+                'sex'        => $this->request->getVar('sex'),
+                'role'       => 'user',
+                'fn'         => 'student',
+            ];
+
+            // dd($data);
+            $ok = $user->save($data);
+
+            if ($ok) {
+                return redirect()->to('login')->with('type', 'success')->with('text', lang('app.successful') . lang('app.useLast'))->with('title', lang('app.done'));
+            }
+        }
+    }
+
     public function login()
     {
         $data['title'] = lang('app.login');
@@ -18,164 +232,182 @@ class AuthController extends BaseController
         }
     }
 
-    // public function auth()
-    // {
-    //     $session = session();
-    //     $user = new User();
+    public function auth()
+    {
+        // dd($this->request->getVar());
+        $session = session();
+        $user = new User();
 
-    //     // dd($this->request->getVar());
-    //     $iqama = $this->request->getVar('iqama');
-    //     $password = $this->request->getVar('password');
-    //     $data = $user->where('iqama =', $iqama)->first();
+        $identity = $this->request->getVar('id');
+        $password = $this->request->getVar('password');
+        $data = $user->where('username', $identity)->orWhere('email', $identity)->first();
 
-    //     // dd($data);
-    //     if ($data) {
-    //         $pass = $data['password'];
-    //         $auth = password_verify($password, $pass);
+        // dd($data);
 
-    //         // dd($auth);
-    //         if ($auth) {
-    //             $sessData = [
-    //                 'id' => $data['id'],
-    //                 'name' => $data['name'],
-    //                 'malaf' =>sprintf('%04s', ($data['malaf']!=1111?$data['malaf']:'----')),
-    //                 'bitaqa' => $data['bitaqa'],
-    //                 'role' => $data['role'],
-    //                 'isLoggedIn' => TRUE
-    //             ];
-    //             $session->set($sessData);
-    //             return redirect()->to('/user');
-    //         }else {
-    //             return redirect()->to('login')->with('password', lang('app.wrongPassword'));
-    //         }
-    //     }else {
-    //         return redirect()->to('login')->with('iqama', lang('app.notSigned'));
-    //     }
-    // }
+        if ($data) {
+            $pass = $data['password'];
+            $auth = password_verify($password, $pass);
+            // dd($auth);
 
-    // public function logout()
-    // {
-    //     $session = session();
-    //     $session->destroy();
-    //     return redirect()->to('/');
-    // }
+            if ($auth) {
+                $sessData = [
+                    'id' => $data['id'],
+                    'name' => $data['name'],
+                    'dob' => $data['dob'],
+                    'email' => $data['email'],
+                    'username' => $data['username'],
+                    'phone' => $data['phone'],
+                    'fn' => $data['fn'],
+                    'sex' => $data['sex'],
+                    'role' => $data['role'],
+                    'isLoggedIn' => TRUE
+                ];
+                $session->set($sessData);
+                return redirect()->to('user');
+                
+            }else {
+                return redirect()->to('login')->with('password', lang('app.wrongPassword'));
+            }
+        }else {
+            return redirect()->to('login')->with('id', lang('app.notSigned'));
+        }
+    }
 
-    // public function recover()
-    // {
-    //     helper('form');
-    //     $data['title'] = lang('app.recoverpassword');
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return redirect()->to('/');
+    }
 
-    //     return view('auth/forgot', $data);
-    // }
+    public function pass()
+    {
+        helper('form');
+        $data['title'] = lang('app.recoverpassword');
 
-    // public function password()
-    // {
-    //     helper('form');
-    //     $user = new User();
+        return view('auth/change', $data);
+    }
 
-    //     // dd($this->request->getVar());
-    //     $malaf = $this->request->getVar('malaf');
-    //     $iqama = $this->request->getVar('iqama');
-    //     $phone = $this->request->getVar('phone');
-    //     $data = $user->where('malaf', $malaf)->first();
-    //     // dd($data);
+    public function change($id)
+    {
+        helper('form');
+        $input = $this->validate(
+            [   //Rules
+                'old' => 'required',
+            ],
+            [   // Errors
+                'old' => [
+                    'required' => lang('error.required'),
+                ],
+            ]
+        );
 
-    //     if ($data > 0) {
-    //         if (!($iqama == $data['iqama'] && $phone == $data['phone'])) {
-    //             return redirect()->to('recover')->with('type', 'error')->with('title', lang('app.incorrect'))->with('text', lang('app.iqama').'/'. lang('app.phone'));
-    //         } else {
-    //             $user = new User();
-    //             $id = $data['id'];
+        $user = new User();
 
-    //             $data = [
-    //                 'password' => password_hash($iqama, PASSWORD_DEFAULT),
-    //             ];
+        $old = $this->request->getVar('old');
+        $new = $this->request->getVar('new');
 
-    //             $ok = $user->update($id, $data);
+        $data = $user->find($id);
+        $pass = $data['password'];
+        $auth = password_verify($old, $pass);
+            // dd($auth);
 
-    //             if ($ok) {
-    //                 return redirect()->to('login')->with('type', 'success')->with('text', lang('app.passchanged'))->with('title', lang('app.ok'));
-    //             }
-    //         }
-    //     }else {        
-    //         return redirect()->to('recover')->with('type', 'error')->with('text', lang('app.notFoundIdentity'))->with('title', lang('app.sorry'));
-    //     }
-    // }
+        if (!$input) {
+            $data['title'] = lang('app.passchange');
+            $data['validation'] = $this->validator;
+            echo view('auth/change', $data);
+        } elseif (!$auth) {
+            $data['title'] = 'settings';
+            return redirect()->to('change/password')->with('text', lang('app.notokoldpass'))->with('type', 'error')->with('title', lang('app.sorry'));
+        } else {
 
-    // public function pass()
-    // {
-    //     helper('form');
-    //     $user = new User();
 
-    //     $data['title'] = lang('app.recoverpassword');
-        
-    //     $role = $user->find(session('id'));
-    //     $auth = password_verify('1234567890', $role['password']);
-    //     ($auth?$data['old'] = '1234567890':$data['old'] = null);
+            $data = [
+                'password' => password_hash($new, PASSWORD_DEFAULT)
+            ];
 
-    //     if (!$auth) {
-    //         return view('auth/change', $data);
-    //     } else {
-    //         // dd($auth);
-    //         return view('auth/change', $data);
-    //     }
-        
+            // dd($data);
+            $ok = $user->update($id, $data);
 
-    // }
+            if ($ok) {
+                return redirect()->to('user')->with('type', 'success')->with('title', lang('app.done'))->with('text', lang('app.passchanged'));
+            } else {
+                return redirect()->to('change/password')->with('type', 'error')->with('text', lang('app.errorOccured'))->with('title', lang('app.sorry'));
+            }
+        }
+    }
 
-    // public function change($id)
-    // {
-    //     helper('form');
-    //     $input = $this->validate(
-    //         [   //Rules
-    //             'old' => 'required',
-    //             'new' => 'required|min_length[8]',
-    //         ],
-    //         [   // Errors
-    //             'old' => [
-    //                 'required' => lang('error.required'),
-    //             ],
-    //             'new' => [
-    //                 'required' => lang('error.required'),
-    //                 'min_length' => lang('error.min_length'),
-    //             ],
-    //         ]
-    //     );
+    public function recover()
+    {
+        helper('form');
+        $data['title'] = lang('app.recoverpassword');
 
-    //     $user = new User();
+        return view('auth/forgot', $data);
+    }
 
-    //     $old = $this->request->getVar('old');
-    //     $new = $this->request->getVar('new');
+    public function password()
+    {
+        // dd($this->request->getVar());
+        helper('form');
 
-    //     $role = $user->find($id);
-    //     $pass = $role['password'];
-    //     $auth = password_verify($old, $pass);
-    //     // dd($auth); 
+        $input = $this->validate(
+            [   //Rules
+                'identity' => 'required|min_length[3]',
+                'lname' => 'required|min_length[3]',
+                'phone' => 'required|exact_length[9]',
+            ],
+            [   // Errors
+                'identity' =>
+                [
+                    'required' => lang('error.required'),
+                    'min_length' => lang('error.min_length'),
+                ],
+                'lname' =>
+                [
+                    'required' => lang('error.required'),
+                    'min_length' => lang('error.min_length'),
+                ],
+                'phone' => [
+                    'required' => lang('error.required'),
+                    'exact_length' => lang('error.exact_length'),
+                ],
+            ]
+        );
 
-    //     if (!$input) {
-    //         $data['title'] = lang('app.passchange');
-    //         // $data['old'] = null;
-    //         $auth = password_verify('1234567890', $role['password']);
-    //         (!$auth?$data['old'] = null:$data['old'] = '1234567890');
-    //         $data['validation'] = $this->validator;
-    //         echo view('auth/change', $data);
-    //     } elseif (!$auth) {
-    //         $data['title'] = lang('app.recoverpassword');
-    //         return redirect()->to('change/password')->with('title', lang('app.notokoldpass'))->with('type', 'error');
-    //     } else {
-    //         $data = [
-    //             'password' => password_hash($new, PASSWORD_DEFAULT)
-    //         ];
+        if (!$input) {
+            $data['title'] = lang('app.recoverpassword');
+            $data['validation'] = $this->validator;
+            echo view('auth/forgot', $data);
+        } else {
+            $user = new User();
 
-    //         // dd($data); 
-    //         $ok = $user->update($id, $data);
+            $identity = $this->request->getVar('identity');
+            $lname = strtoupper($this->request->getVar('lname'));
+            $phone = $this->request->getVar('phone');
+            $data = $user->where('email', $identity)->orWhere('malaf', $identity)->first();
+            // dd($data);
 
-    //         if ($ok) {
-    //             session()->destroy();
-    //             return redirect()->to('login')->with('type', 'success')->with('title', lang('app.ok'))->with('text', lang('app.passchanged'));
-    //         } else {
-    //             return redirect()->to('password/change')->with('toast', 'danger')->with('message', lang('app.errorOccured'));
-    //         }
-    //     }
-    // }
+            if ($data > 0) {
+                if (!($lname == $data['lname'] && $phone == $data['phone'])) {
+                    return redirect()->to('recover')->with('type', 'error')->with('title', lang('app.incorrect'))->with('text', lang('app.lname') . '/' . lang('app.phone'));
+                } else {
+                    $user = new User();
+                    $id = $data['id'];
+
+                    $data = [
+                        'password' => password_hash($lname, PASSWORD_DEFAULT),
+                    ];
+
+                    $ok = $user->update($id, $data);
+
+                    if ($ok) {
+                        return redirect()->to('login')->with('type', 'success')->with('text', lang('app.passchanged').' '. lang('app.useLast'))->with('title', lang('app.done'));
+                    }
+                }
+            } else {
+                // dd(lang('app.notFound'));
+                return redirect()->to('recover')->with('type', 'error')->with('text', lang('app.notFound'))->with('title', lang('app.sorry'));
+            }
+        }
+    }
 }

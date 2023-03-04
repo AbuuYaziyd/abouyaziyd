@@ -43,7 +43,7 @@
     $(document).ready(function () {
     var Toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: 'center',
       showConfirmButton: false,
       timer: 3000})
       Toast.fire({

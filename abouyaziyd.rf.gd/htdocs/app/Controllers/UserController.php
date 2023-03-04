@@ -13,8 +13,8 @@ class UserController extends BaseController
         // dd($data);
 
         if (session('role') == 'admin') {
-            return redirect()->to('admin');
-        } elseif(session('role') == 'admin') {
+        //     return redirect()->to('admin');
+        // } elseif(session('role') == 'admin') {
             return view('user/index', $data);
         }
     }

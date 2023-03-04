@@ -3,15 +3,15 @@
 <?= $this->section('content') ?>
 <?php $validation = \Config\Services::validation() ?>
     <?= form_open('login') ?>
-        <label><b><?= lang('app.email') ?></b></label>
-            <?php if ($validation->getError('email')) : ?>
-                <span class="badge badge-danger"> <?= $errors = $validation->getError('email') ?></span>
+        <label><b><?= lang('app.id') ?></b></label>
+            <?php if ($validation->getError('id')) : ?>
+                <span class="badge badge-danger"> <?= $errors = $validation->getError('id') ?></span>
             <?php endif ?>
             <div class="input-group mb-3">
-            <input type="text" class="form-control" name="email" placeholder="<?= lang('app.email') ?>">
+            <input type="text" class="form-control" name="id" placeholder="<?= lang('app.id') ?>">
             <div class="input-group-append">
                 <div class="input-group-text">
-                    <span class="fas fa-user"></span>
+                    <span class="fas fa-envelope"></span>
                 </div>
             </div>
             </div>

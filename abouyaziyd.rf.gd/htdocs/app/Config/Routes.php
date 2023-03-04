@@ -63,7 +63,65 @@ $routes->get('logout', 'AuthController::logout');
 $routes->group('user', function ($routes) {
     $routes->get('/', 'UserController::index', ['filter' => 'auth']);
     // $routes->get('profile', 'UserController::profile', ['filter' => 'auth']);
-    // $routes->post('edit/(:num)', 'ShopController::update/$1', ['filter' => 'auth']);
+});
+
+
+/*
+ * --------------------------------------------------------------------
+ * Settings Routings
+ * --------------------------------------------------------------------
+ */
+$routes->group('set', function ($routes) {
+    $routes->get('/', 'SettingController::index', ['filter' => 'auth']);
+    $routes->post('corousel/(:num)', 'SettingController::corousel/$1', ['filter' => 'auth']);
+    $routes->post('service/(:num)', 'SettingController::service/$1', ['filter' => 'auth']);
+    $routes->post('partner/(:num)', 'SettingController::partner/$1', ['filter' => 'auth']);
+    $routes->post('infos/(:num)', 'SettingController::infos/$1', ['filter' => 'auth']);
+    $routes->post('soci/(:num)', 'SettingController::soci/$1', ['filter' => 'auth']);
+});
+
+/*
+ * --------------------------------------------------------------------
+ * Category Routings
+ * --------------------------------------------------------------------
+ */
+$routes->group('cat', function ($routes) {
+    $routes->get('/', 'CategoryController::index', ['filter' => 'auth']);
+    $routes->get('add', 'CategoryController::add', ['filter' => 'auth']);
+    $routes->post('create', 'CategoryController::create', ['filter' => 'auth']);
+    $routes->get('show/(:num)', 'CategoryController::show/$1', ['filter' => 'auth']);
+    $routes->post('edit/(:num)', 'CategoryController::edit/$1', ['filter' => 'auth']);
+    $routes->get('delete/(:num)', 'CategoryController::delete/$1', ['filter' => 'auth']);
+});
+
+/*
+ * --------------------------------------------------------------------
+ * Blog Routings
+ * --------------------------------------------------------------------
+ */
+// $routes->group('blog', function ($routes) {
+//     $routes->get('/', 'BlogController::index');
+//     $routes->get('single/(:num)', 'BlogController::single/$1');
+//     $routes->get('first', 'BlogController::first', ['filter' => 'auth']);
+//     $routes->get('add', 'BlogController::add', ['filter' => 'auth']);
+//     $routes->post('create', 'BlogController::create', ['filter' => 'auth']);
+//     $routes->get('show/(:num)', 'BlogController::show/$1', ['filter' => 'auth']);
+//     $routes->post('edit/(:num)', 'BlogController::edit/$1', ['filter' => 'auth']);
+//     $routes->get('delete/(:num)', 'BlogController::delete/$1', ['filter' => 'auth']);
+// });
+
+/*
+ * --------------------------------------------------------------------
+ * Product Routings
+ * --------------------------------------------------------------------
+ */
+$routes->group('product', function ($routes) {
+    $routes->get('/', 'ProductController::index', ['filter' => 'auth']);
+    $routes->get('add', 'ProductController::add', ['filter' => 'auth']);
+    $routes->post('create', 'ProductController::create', ['filter' => 'auth']);
+    $routes->get('show/(:num)', 'ProductController::show/$1', ['filter' => 'auth']);
+    $routes->post('edit/(:num)', 'ProductController::edit/$1', ['filter' => 'auth']);
+    $routes->get('delete/(:num)', 'ProductController::delete/$1', ['filter' => 'auth']);
 });
 
 /*

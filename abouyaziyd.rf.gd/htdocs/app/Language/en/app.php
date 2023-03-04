@@ -21,4 +21,24 @@ return [
     'contact' => 'Contact',
     'menu' => 'Menu',
     'callMe' => 'Call Me',
+
+    // Auth
+    'email' => 'Email',
+    'password' => 'Password',
+    'forgetPass' => 'Forget Password',
+    'login' => 'Login',
+    'logout' => 'Logout',
+    'id' => 'Identity',
+
+    // Admin
+    'setting' => 'Setting',
+    'settings' => 'Settings',
+    
+    // Category
+    'category' => 'Category',
+    'categories' => 'Categories',
+    
+    // Product
+    'product' => 'Product',
+    'products' => 'Products',
 ];
