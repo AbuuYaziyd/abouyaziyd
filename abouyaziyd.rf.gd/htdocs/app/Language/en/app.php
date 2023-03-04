@@ -12,6 +12,7 @@ return [
     'createdBy' => 'Created By',
     'copyright' => 'Copyright',
     'copyrights' => 'Copyrights',
+    'welcome' => 'Welcome',
     'view' => 'View',
     'visit' => 'Visit',
     'viewAll' => 'View All',
