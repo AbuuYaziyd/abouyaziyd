@@ -40,6 +40,34 @@ $routes->post('contact', 'Home::contact');
 
 /*
  * --------------------------------------------------------------------
+ * Auth Routings
+ * --------------------------------------------------------------------
+ */
+// $routes->get('register', 'AuthController::register');
+// $routes->post('register', 'AuthController::secure');
+$routes->get('login', 'AuthController::login');
+$routes->post('login', 'AuthController::auth');
+// $routes->get('recover', 'AuthController::recover');
+// $routes->post('recover', 'AuthController::password');
+// $routes->get('change/password', 'AuthController::pass', ['filter' => 'auth']);
+// $routes->post('change/password/(:num)', 'AuthController::change/$1', ['filter' => 'auth']);
+// $routes->get('tasjil','AuthController::reg', ['filter' => 'auth']);
+// $routes->post('tasjil', 'AuthController::regNew', ['filter' => 'auth']);
+$routes->get('logout', 'AuthController::logout');
+
+/*
+ * --------------------------------------------------------------------
+ * User Routings
+ * --------------------------------------------------------------------
+ */
+$routes->group('user', function ($routes) {
+    $routes->get('/', 'UserController::index', ['filter' => 'auth']);
+    // $routes->get('profile', 'UserController::profile', ['filter' => 'auth']);
+    // $routes->post('edit/(:num)', 'ShopController::update/$1', ['filter' => 'auth']);
+});
+
+/*
+ * --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------
  *
