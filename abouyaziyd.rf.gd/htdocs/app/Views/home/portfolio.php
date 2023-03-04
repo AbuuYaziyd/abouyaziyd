@@ -66,7 +66,7 @@
             </div>
         </div>     
         <div class="text-center mt-4">
-            <a class="btn btn-xl btn-outline-dark" href="#">
+            <a class="btn btn-xl btn-outline-primary" href="#">
                 <i class="fas fa-download me-2"></i>
                 Free Download!
             </a>
