@@ -21,10 +21,13 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
+  <div class="login-logo">
+    <img src="<?= base_url('assets/logo.svg') ?>" alt="logo" style="height: 100px;"/><br>
+    <a href="<?= base_url() ?>"><b><?= lang('app.appName') ?></b></a>
+  </div>
   <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="<?= base_url() ?>" class="h1"><b><?= lang('app.appName') ?></b></a>
-    </div>
+    <!-- <div class="card-header text-center">
+    </div> -->
     <div class="card-body">
       <?= $this->renderSection('content') ?>
     </div>
