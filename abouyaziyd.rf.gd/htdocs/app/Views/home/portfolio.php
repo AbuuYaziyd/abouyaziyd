@@ -64,6 +64,12 @@
                     <img class="img-fluid" src="<?= base_url('assets/img/portfolio/submarine.png') ?>" alt="img" />
                 </div>
             </div>
+        </div>     
+        <div class="text-center mt-4">
+            <a class="btn btn-xl btn-outline-dark" href="#">
+                <i class="fas fa-download me-2"></i>
+                Free Download!
+            </a>
         </div>
     </div>
 </section>

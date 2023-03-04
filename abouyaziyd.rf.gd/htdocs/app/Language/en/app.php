@@ -3,7 +3,7 @@
 // override core en language system validation or define your own en language validation message
 return [
     'appName' => 'AB Solutions',
-    'Fx' => 'Graphic Artist - Web Designer - Illustrator',
+    'Fx' => 'Graphic Editor - Web Designer - Programmer',
 
     // Master
     'hello' => 'Hello friend!',
