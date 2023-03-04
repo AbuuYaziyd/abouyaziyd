@@ -20,8 +20,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputBorder"><?= lang('app.desc') ?></label>
-                        <textarea name="info" class="form-control" cols="30" rows="10"><?= $cat['info'] ?></textarea>
-                        <!-- <input type="text" class="form-control" name="info"> -->
+                        <textarea name="info" class="form-control" id="summernote"><?= $cat['info'] ?></textarea>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputBorder"><?= lang('app.image') ?></label>
@@ -57,4 +56,5 @@
         </div> 
   </div>
 </section>  
+<?= $this->include('layouts/text') ?>
 <?= $this->endsection() ?>

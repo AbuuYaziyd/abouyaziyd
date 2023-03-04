@@ -114,16 +114,16 @@ $routes->group('cat', function ($routes) {
 
 /*
  * --------------------------------------------------------------------
- * Product Routings
+ * Project Routings
  * --------------------------------------------------------------------
  */
-$routes->group('product', function ($routes) {
-    $routes->get('/', 'ProductController::index', ['filter' => 'auth']);
-    $routes->get('add', 'ProductController::add', ['filter' => 'auth']);
-    $routes->post('create', 'ProductController::create', ['filter' => 'auth']);
-    $routes->get('show/(:num)', 'ProductController::show/$1', ['filter' => 'auth']);
-    $routes->post('edit/(:num)', 'ProductController::edit/$1', ['filter' => 'auth']);
-    $routes->get('delete/(:num)', 'ProductController::delete/$1', ['filter' => 'auth']);
+$routes->group('project', function ($routes) {
+    $routes->get('/', 'ProjectController::index', ['filter' => 'auth']);
+    $routes->get('add', 'ProjectController::add', ['filter' => 'auth']);
+    $routes->post('create', 'ProjectController::create', ['filter' => 'auth']);
+    $routes->get('show/(:num)', 'ProjectController::show/$1', ['filter' => 'auth']);
+    $routes->post('edit/(:num)', 'ProjectController::edit/$1', ['filter' => 'auth']);
+    $routes->get('delete/(:num)', 'ProjectController::delete/$1', ['filter' => 'auth']);
 });
 
 /*

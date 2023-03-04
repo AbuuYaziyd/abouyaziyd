@@ -36,10 +36,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('product') ?>" class="<?= $title==lang('app.products')?'active':'' ?> nav-link">
+            <a href="<?= base_url('project') ?>" class="<?= $title==lang('app.projects')?'active':'' ?> nav-link">
               <i class="nav-icon fas fa-box"></i>
               <p>
-                <?= lang('app.products') ?>
+                <?= lang('app.projects') ?>
               </p>
             </a>
           </li>

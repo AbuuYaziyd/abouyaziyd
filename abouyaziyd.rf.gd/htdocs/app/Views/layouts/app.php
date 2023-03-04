@@ -5,14 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="ZANZIBAR ASSOCIATION OF VEGETABLE AND FRUITS GROWERS (UWAMWIMA)">
-    <meta name="keywords" content="UWAMWIMA">
+    <meta name="description" content="AB Solutions, Come join us and Build the Future!">
+    <meta name="keywords" content="AB Solutions">
     <meta name="author" content="abouyaziyd">
     <meta name="theme-color" content="#738d6d">
     <link rel="manifest" href="<?= base_url('manifest') ?>" />
     <script src="<?= base_url('assets/js/app.js') ?>"></script>
-    <link rel="apple-touch-icon" href="<?= base_url('assets/images/logo/logo.png') ?> ">
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/images/logo/logo.png') ?> ">
+    <link rel="apple-touch-icon" href="<?= base_url('assets/logo.svg') ?> ">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/logo.svg') ?> ">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title><?= lang('app.appName') ?> | <?= $title ?></title>
 

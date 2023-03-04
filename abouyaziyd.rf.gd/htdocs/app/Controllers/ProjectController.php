@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Category;
 use App\Models\Project;
 
-class ProductController extends BaseController
+class ProjectController extends BaseController
 {
     public function index()
     {
@@ -14,7 +14,7 @@ class ProductController extends BaseController
 
         $data['title'] = lang('app.products');
         $data['pr'] = $pr->findAll();
-        dd($data);
+        // dd($data);
 
         return view('product/index', $data);
     }

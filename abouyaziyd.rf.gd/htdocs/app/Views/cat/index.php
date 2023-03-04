@@ -25,7 +25,7 @@
                 <?php foreach ($cat as $key => $dt) : ?>
                   <tr>
                     <td><?= $key+1 ?></td>
-                    <td><span class="badge badge-info"><?= $dt['name'] ?></span></td>
+                    <td><?= $dt['name'] ?></td>
                     <td><img class="direct-chat-img" src="<?= $dt['cat_img'] ?>" alt="message user image"></td>
                     <td><?= substr($dt['info'], 0, 30) ?>...</td>
                     <td>

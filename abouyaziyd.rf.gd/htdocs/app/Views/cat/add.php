@@ -18,6 +18,10 @@
                       <label for="exampleInputBorder"><?= lang('app.name') ?></label>
                       <input type="text" class="form-control" name="name" placeholder="<?= lang('app.name') ?>" value="<?= old('name') ?>">
                     </div>
+                      <div class="form-group">
+                        <label for="exampleInputBorder"><?= lang('app.desc') ?></label>
+                        <textarea name="info" class="form-control" id="summernote"></textarea>
+                      </div>
                     <div class="form-group">
                       <label for="exampleInputBorder"><?= lang('app.image') ?></label>
                       <input type="file" class="form-control" name="cat_img" placeholder="<?= lang('app.image') ?>" value="<?= old('featured') ?>">
@@ -31,4 +35,5 @@
     </div>
   </div>
 </section>  
+<?= $this->include('layouts/text') ?>
 <?= $this->endsection() ?>
