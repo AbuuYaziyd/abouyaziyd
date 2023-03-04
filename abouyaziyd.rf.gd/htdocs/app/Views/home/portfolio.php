@@ -66,9 +66,9 @@
             </div>
         </div>     
         <div class="text-center mt-4">
-            <a class="btn btn-xl btn-outline-primary" href="#">
-                <i class="fas fa-download me-2"></i>
-                Free Download!
+            <a class="btn btn-xl btn-outline-primary" href="<?= base_url('categories') ?>">
+                <i class="fas fa-rotate me-2"></i>
+                <?= lang('app.viewAll') ?>
             </a>
         </div>
     </div>

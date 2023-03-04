@@ -10,6 +10,8 @@ return [
     'availability' => 'I’m available for freelance work.',
     'letsBegin' => 'Let\'s begin',
     'copyright' => 'Copyright',
+    'view' => 'View',
+    'viewAll' => 'View All',
     
     // Navigantion
     'home' => 'Home',
