@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="<?= lang('app.appName') ?>" />
         <meta name="author" content="abouyaziyd" />
-        <title><?= lang('app.appName') ?></title>
+        <title><?= lang('app.appName') ?> | <?= $title ?></title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="<?= base_url('assets/logo.svg') ?>" />
         <!-- Font Awesome icons (free version)-->

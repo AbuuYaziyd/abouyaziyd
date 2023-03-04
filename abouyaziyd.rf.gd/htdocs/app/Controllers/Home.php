@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Category;
+use App\Models\Project;
 
 class Home extends BaseController
 {
@@ -12,15 +13,26 @@ class Home extends BaseController
 
         $cat = new Category();
 
-        $data['cat'] = $cat->findAll(6);
+        $data['title'] = lang('app.welcome');
+        $data['cat'] = $cat->findAll();
         // dd($data);
 
         return view('home/index', $data);
-        // return view('welcome');
     }
 
     public function contact()
     {
         dd($this->request->getVar());
+    }
+    
+    public function projects($id)
+    {
+        $pr = new Project();
+
+        $data['title'] = lang('app.projects');
+        $data['pr'] = $pr->where('cat_id', $id)->findAll();
+        dd($data);
+
+        return view('home/projects', $data);
     }
 }

@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
     <!-- Portfolio Section-->
-    <?= $this->include('home/portfolio') ?>
+    <?= $this->include('home/categories') ?>
     <!-- About Section-->
     <?= $this->include('home/about') ?>
     <!-- Contact Section-->

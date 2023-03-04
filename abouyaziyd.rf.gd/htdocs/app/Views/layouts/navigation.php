@@ -10,7 +10,9 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio"><?= lang('app.projects') ?></a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about"><?= lang('app.about') ?></a></li>
+                        <?php if ($title == lang('app.welcome')) : ?>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact"><?= lang('app.contact') ?></a></li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </div>
