@@ -20,6 +20,7 @@ return [
     // Navigantion
     'home' => 'Home',
     'about' => 'About',
+    'dashboard' => 'Dashboard',
     'services' => 'Services',
     'contact' => 'Contact',
     'menu' => 'Menu',
