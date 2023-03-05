@@ -25,7 +25,7 @@
                 <?php foreach ($pr as $key => $dt) : ?>
                   <tr>
                     <td><?= $key+1 ?></td>
-                    <td><a href="<?= $dt['link']??'#' ?>" class="badge badge-<?= $dt['status']=='done'?'success':'secondary' ?>"><?= $dt['name'] ?></a></td>
+                    <td><a href="<?= $dt['link']??'#' ?>" target="_blank" class="badge badge-<?= $dt['status']=='done'?'success':'secondary' ?>"><?= $dt['name'] ?></a></td>
                     <td><img class="direct-chat-img" src="<?= $dt['pr_img'] ?>" alt="category-<?= $key+1 ?>"></td>
                     <td><?= substr($dt['info'], 0, 30) ?>...</td>
                     <td>
