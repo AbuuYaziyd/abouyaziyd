@@ -36,7 +36,7 @@
                                         </div>
                                         <img class="img-fluid rounded mb-5" src="<?= base_url($dt['pr_img']) ?>" alt="project-<?= $key+1 ?>" />
                                         <p class="mb-4"><?= $dt['info'] ?></p>
-                                        <a class="btn btn-primary" href="<?= $dt['link'] ?>">
+                                        <a class="btn btn-primary" href="<?= $dt['link'] ?>" target="_blank">
                                             <i class="fas fa-globe fa-fw"></i>
                                             <?= lang('app.visit') ?>
                                         </a>

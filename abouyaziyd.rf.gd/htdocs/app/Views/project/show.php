@@ -36,8 +36,8 @@
                       <label for="exampleInputBorder"><?= lang('app.status') ?></label>
                       <select name="status" class="custom-select">
                         <option selected disabled><?= lang('app.select') ?></option>
-                        <option value="done"><?= lang('app.done') ?></option>
-                        <option value="notDone"><?= lang('app.notDone') ?></option>
+                        <option value="done" <?= $pr['status']=='done'?'selected':'' ?>><?= lang('app.done') ?></option>
+                        <option value="notDone" <?= $pr['status']=='notDone'?'selected':'' ?>><?= lang('app.notDone') ?></option>
                       </select>
                     </div>
                       <div class="form-group">
