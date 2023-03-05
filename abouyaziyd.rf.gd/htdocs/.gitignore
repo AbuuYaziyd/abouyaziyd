@@ -103,6 +103,7 @@ _modules/*
 nbproject/
 build/
 nbbuild/
+.htaccess
 nbdist/
 nbactions.xml
 nb-configuration.xml
