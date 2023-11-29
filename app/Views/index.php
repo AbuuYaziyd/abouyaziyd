@@ -58,7 +58,7 @@
             <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
                 <div class="text-center">
-                    <div class="author-img" style="background-image: url(images/about.jpg);"></div>
+                    <div class="author-img" style="background-image: url(<?= base_url('assets/images/about.jpg') ?>);"></div>
                     <h1 id="colorlib-logo"><a href="index.html">Jackson Ford</a></h1>
                     <span class="position"><a href="#">UI/UX/Designer</a> in Philippines</span>
                 </div>
@@ -98,7 +98,7 @@
                 <section id="colorlib-hero" class="js-fullheight" data-section="home">
                     <div class="flexslider js-fullheight">
                         <ul class="slides">
-                            <li style="background-image: url(images/img_bg_1.jpg);">
+                            <li style="background-image: url(<?= base_url('assets/images/img_bg_1.jpg') ?>);">
                                 <div class="overlay"></div>
                                 <div class="container-fluid">
                                     <div class="row">
@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li style="background-image: url(images/img_bg_2.jpg);">
+                            <li style="background-image: url(<?= base_url('assets/images/img_bg_2.jpg') ?>);">
                                 <div class="overlay"></div>
                                 <div class="container-fluid">
                                     <div class="row">
@@ -268,7 +268,7 @@
                     </div>
                 </section>
 
-                <div id="colorlib-counter" class="colorlib-counters" style="background-image: url(images/cover_bg_1.jpg);" data-stellar-background-ratio="0.5">
+                <div id="colorlib-counter" class="colorlib-counters" style="background-image: url(<?= base_url('assets/images/cover_bg_1.jpg') ?>);" data-stellar-background-ratio="0.5">
                     <div class="overlay"></div>
                     <div class="colorlib-narrow-content">
                         <div class="row">
@@ -568,7 +568,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                                <div class="project" style="background-image: url(images/img-1.jpg);">
+                                <div class="project" style="background-image: url(<?= base_url('assets/images/img-1.jpg') ?>);">
                                     <div class="desc">
                                         <div class="con">
                                             <h3><a href="work.html">Work 01</a></h3>
@@ -583,7 +583,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-                                <div class="project" style="background-image: url(images/img-2.jpg);">
+                                <div class="project" style="background-image: url(<?= base_url('assets/images/img-2.jpg') ?>);">
                                     <div class="desc">
                                         <div class="con">
                                             <h3><a href="work.html">Work 02</a></h3>
@@ -598,7 +598,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 animate-box" data-animate-effect="fadeInTop">
-                                <div class="project" style="background-image: url(images/img-3.jpg);">
+                                <div class="project" style="background-image: url(<?= base_url('assets/images/img-3.jpg') ?>);">
                                     <div class="desc">
                                         <div class="con">
                                             <h3><a href="work.html">Work 03</a></h3>
@@ -613,7 +613,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 animate-box" data-animate-effect="fadeInBottom">
-                                <div class="project" style="background-image: url(images/img-4.jpg);">
+                                <div class="project" style="background-image: url(<?= base_url('assets/images/img-4.jpg') ?>);">
                                     <div class="desc">
                                         <div class="con">
                                             <h3><a href="work.html">Work 04</a></h3>
@@ -628,7 +628,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-                                <div class="project" style="background-image: url(images/img-5.jpg);">
+                                <div class="project" style="background-image: url(<?= base_url('assets/images/img-5.jpg') ?>);">
                                     <div class="desc">
                                         <div class="con">
                                             <h3><a href="work.html">Work 05</a></h3>
@@ -643,7 +643,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-                                <div class="project" style="background-image: url(images/img-6.jpg);">
+                                <div class="project" style="background-image: url(<?= base_url('assets/images/img-6.jpg') ?>);">
                                     <div class="desc">
                                         <div class="con">
                                             <h3><a href="work.html">Work 06</a></h3>
@@ -677,7 +677,7 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
                                 <div class="blog-entry">
-                                    <a href="blog.html" class="blog-img"><img src="images/blog-1.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
+                                    <a href="blog.html" class="blog-img"><img src="<?= base_url('assets/images/blog-1.jpg') ?>" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
                                     <div class="desc">
                                         <span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
                                         <h3><a href="blog.html">Renovating National Gallery</a></h3>
@@ -687,7 +687,7 @@
                             </div>
                             <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInRight">
                                 <div class="blog-entry">
-                                    <a href="blog.html" class="blog-img"><img src="images/blog-2.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
+                                    <a href="blog.html" class="blog-img"><img src="<?= base_url('assets/images/blog-2.jpg') ?>" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
                                     <div class="desc">
                                         <span><small>April 14, 2018 </small> | <small> Web Design </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
                                         <h3><a href="blog.html">Wordpress for a Beginner</a></h3>
@@ -697,7 +697,7 @@
                             </div>
                             <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
                                 <div class="blog-entry">
-                                    <a href="blog.html" class="blog-img"><img src="images/blog-3.jpg" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
+                                    <a href="blog.html" class="blog-img"><img src="<?= base_url('assets/images/blog-3.jpg') ?>" class="img-responsive" alt="HTML5 Bootstrap Template by colorlib.com"></a>
                                     <div class="desc">
                                         <span><small>April 14, 2018 </small> | <small> Inspiration </small> | <small> <i class="icon-bubble3"></i> 4</small></span>
                                         <h3><a href="blog.html">Make website from scratch</a></h3>
