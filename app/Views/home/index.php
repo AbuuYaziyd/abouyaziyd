@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Jackson Template</title>
+    <title><?= APP_NAME ?> - Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="abouyaziyd Website" />
+    <meta name="keywords" content="Portofolio" />
+    <meta name="author" content="Abou Yaziyd" />
 
     <!-- Facebook and Twitter integration -->
     <meta property="og:title" content="" />
@@ -22,7 +22,7 @@
     <meta name="twitter:card" content="" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="<?= base_url('assets/logo/favicon.ico') ?>">
 
     <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
@@ -45,11 +45,6 @@
 
     <!-- Modernizr JS -->
     <script src="<?= base_url('assets/js/modernizr-2.6.2.min.js') ?>"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-	<script src="<?= base_url('assets/js/respond.min.js') ?>"></script>
-	<![endif]-->
-
 </head>
 
 <body>
@@ -59,215 +54,16 @@
             <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
                 <div class="text-center">
                     <div class="author-img" style="background-image: url(<?= base_url('assets/images/about.jpg') ?>);"></div>
-                    <h1 id="colorlib-logo"><a href="index.html">Jackson Ford</a></h1>
-                    <span class="position"><a href="#">UI/UX/Designer</a> in Philippines</span>
+                    <h1 id="colorlib-logo"><a href="<?= base_url() ?>"><?= APP_NAME ?></a></h1>
+                    <span class="position"><a href="#"><?= lang('app.webDev') ?></a> Tz</span>
                 </div>
-                <nav id="colorlib-main-menu" role="navigation" class="navbar">
-                    <div id="navbar" class="collapse">
-                        <ul>
-                            <li class="active"><a href="#" data-nav-section="home">Home</a></li>
-                            <li><a href="#" data-nav-section="about">About</a></li>
-                            <li><a href="#" data-nav-section="services">Services</a></li>
-                            <li><a href="#" data-nav-section="skills">Skills</a></li>
-                            <li><a href="#" data-nav-section="education">Education</a></li>
-                            <li><a href="#" data-nav-section="experience">Experience</a></li>
-                            <li><a href="#" data-nav-section="work">Work</a></li>
-                            <li><a href="#" data-nav-section="blog">Blog</a></li>
-                            <li><a href="#" data-nav-section="contact">Contact</a></li>
-                        </ul>
-                    </div>
-                </nav>
-
-                <div class="colorlib-footer">
-                    <p><small>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright <script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved. Made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </span> <span>Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a></span> <span>Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash.com</a></span></small></p>
-                    <ul>
-                        <li><a href="#"><i class="icon-facebook2"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter2"></i></a></li>
-                        <li><a href="#"><i class="icon-instagram"></i></a></li>
-                        <li><a href="#"><i class="icon-linkedin2"></i></a></li>
-                    </ul>
-                </div>
-
+                <?= $this->include('layouts/sidebar') ?>
+                <?= $this->include('layouts/footer') ?>
             </aside>
 
             <div id="colorlib-main">
-                <section id="colorlib-hero" class="js-fullheight" data-section="home">
-                    <div class="flexslider js-fullheight">
-                        <ul class="slides">
-                            <li style="background-image: url(<?= base_url('assets/images/img_bg_1.jpg') ?>);">
-                                <div class="overlay"></div>
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-6 col-md-offset-3 col-md-pull-3 col-sm-12 col-xs-12 js-fullheight slider-text">
-                                            <div class="slider-text-inner js-fullheight">
-                                                <div class="desc">
-                                                    <h1>Hi! <br>I'm Jackson</h1>
-                                                    <h2>100% html5 bootstrap templates Made by <a href="https://colorlib.com/" target="_blank">colorlib.com</a></h2>
-                                                    <p><a class="btn btn-primary btn-learn">Download CV <i class="icon-download4"></i></a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="background-image: url(<?= base_url('assets/images/img_bg_2.jpg') ?>);">
-                                <div class="overlay"></div>
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-md-6 col-md-offset-3 col-md-pull-3 col-sm-12 col-xs-12 js-fullheight slider-text">
-                                            <div class="slider-text-inner">
-                                                <div class="desc">
-                                                    <h1>I am <br>a Designer</h1>
-                                                    <h2>100% html5 bootstrap templates Made by <a href="https://colorlib.com/" target="_blank">colorlib.com</a></h2>
-                                                    <p><a class="btn btn-primary btn-learn">View Portfolio <i class="icon-briefcase3"></i></a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="colorlib-about" data-section="about">
-                    <div class="colorlib-narrow-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-                                    <div class="col-md-12">
-                                        <div class="about-desc">
-                                            <span class="heading-meta">About Us</span>
-                                            <h2 class="colorlib-heading">Who Am I?</h2>
-                                            <p><strong>Hi I'm Jackson Ford</strong> On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>
-                                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
-                                        <div class="services color-1">
-                                            <span class="icon2"><i class="icon-bulb"></i></span>
-                                            <h3>Graphic Design</h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
-                                        <div class="services color-2">
-                                            <span class="icon2"><i class="icon-globe-outline"></i></span>
-                                            <h3>Web Design</h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 animate-box" data-animate-effect="fadeInTop">
-                                        <div class="services color-3">
-                                            <span class="icon2"><i class="icon-data"></i></span>
-                                            <h3>Software</h3>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 animate-box" data-animate-effect="fadeInBottom">
-                                        <div class="services color-4">
-                                            <span class="icon2"><i class="icon-phone3"></i></span>
-                                            <h3>Application</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-                                        <div class="hire">
-                                            <h2>I am happy to know you <br>that 300+ projects done sucessfully!</h2>
-                                            <a href="#" class="btn-hire">Hire me</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-
-                <section class="colorlib-services" data-section="services">
-                    <div class="colorlib-narrow-content">
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-                                <span class="heading-meta">What I do?</span>
-                                <h2 class="colorlib-heading">Here are some of my expertise</h2>
-                            </div>
-                        </div>
-                        <div class="row row-pt-md">
-                            <div class="col-md-4 text-center animate-box">
-                                <div class="services color-1">
-                                    <span class="icon">
-                                        <i class="icon-bulb"></i>
-                                    </span>
-                                    <div class="desc">
-                                        <h3>Innovative Ideas</h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center animate-box">
-                                <div class="services color-2">
-                                    <span class="icon">
-                                        <i class="icon-data"></i>
-                                    </span>
-                                    <div class="desc">
-                                        <h3>Software</h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center animate-box">
-                                <div class="services color-3">
-                                    <span class="icon">
-                                        <i class="icon-phone3"></i>
-                                    </span>
-                                    <div class="desc">
-                                        <h3>Application</h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center animate-box">
-                                <div class="services color-4">
-                                    <span class="icon">
-                                        <i class="icon-layers2"></i>
-                                    </span>
-                                    <div class="desc">
-                                        <h3>Graphic Design</h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center animate-box">
-                                <div class="services color-5">
-                                    <span class="icon">
-                                        <i class="icon-data"></i>
-                                    </span>
-                                    <div class="desc">
-                                        <h3>Software</h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-center animate-box">
-                                <div class="services color-6">
-                                    <span class="icon">
-                                        <i class="icon-phone3"></i>
-                                    </span>
-                                    <div class="desc">
-                                        <h3>Application</h3>
-                                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
+                <?= $this->include('layouts/hero') ?>
+                <?= $this->include('layouts/about') ?>
                 <div id="colorlib-counter" class="colorlib-counters" style="background-image: url(<?= base_url('assets/images/cover_bg_1.jpg') ?>);" data-stellar-background-ratio="0.5">
                     <div class="overlay"></div>
                     <div class="colorlib-narrow-content">
