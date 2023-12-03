@@ -45,6 +45,7 @@ $RECYCLE.BIN/
 .htaccess
 .vagrant
 Vagrantfile
+manifest.json
 
 #-------------------------
 # Temporary Files
@@ -62,6 +63,7 @@ writable/uploads/*
 !writable/uploads/index.html
 
 writable/debugbar/*
+writable/*
 
 php_errors.log
 
@@ -104,6 +106,7 @@ _modules/*
 nbproject/
 build/
 nbbuild/
+dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
@@ -124,4 +127,5 @@ nb-configuration.xml
 /results/
 /phpunit*.xml
 /.phpunit.*.cache
+
 public/*
