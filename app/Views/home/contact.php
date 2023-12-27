@@ -16,6 +16,7 @@
                 <a class="text-gradient" target='_blank' href="https://twitter.com/Abouyaziyd"><i class="bi bi-twitter"></i></a>
                 <a class="text-gradient" target='_blank' href="https://m.facebook.com/abouyaziyd/"><i class="bi bi-facebook"></i></a>
                 <a class="text-gradient" target='_blank' href="https://wa.me/255682057710"><i class="bi bi-whatsapp"></i></a>
+                <a class="text-gradient" target='_blank' href="tel:+255682057710"><i class="bi bi-phone"></i></a>
                 <a class="text-gradient" target='_blank' href="mailto:abouyaziyd@gmail.com"><i class="bi bi-envelope"></i></a>
             </div>
         </div>
