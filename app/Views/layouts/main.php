@@ -35,10 +35,10 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="<?= base_url() ?>"><?= lang('app.home') ?></a></li>
-                            <li class="nav-item"><a class="nav-link" href="<?= base_url('about') ?>"><?= lang('app.about') ?></a></li>
-                            <li class="nav-item"><a class="nav-link" href="<?= base_url('project') ?>"><?= lang('app.projects') ?></a></li>
-                            <li class="nav-item"><a class="nav-link" href="<?= base_url('contact') ?>"><?= lang('app.contact') ?></a></li>
+                            <li class="nav-item"><a class="nav-link <?= uri_string()==''?'active':'' ?>" href="<?= base_url() ?>"><?= lang('app.home') ?></a></li>
+                            <li class="nav-item"><a class="nav-link <?= uri_string()== 'about'?'active':'' ?>" href="<?= base_url('about') ?>"><?= lang('app.about') ?></a></li>
+                            <li class="nav-item"><a class="nav-link <?= uri_string()== 'my-project'?'active':'' ?>" href="<?= base_url('project') ?>"><?= lang('app.projects') ?></a></li>
+                            <li class="nav-item"><a class="nav-link <?= uri_string()== 'contact'?'active':'' ?>" href="<?= base_url('contact') ?>"><?= lang('app.contact') ?></a></li>
                         </ul>
                     </div>
                 </div>
