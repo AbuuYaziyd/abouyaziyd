@@ -13,6 +13,7 @@ return [
     'copyright' => 'Copyright',
     'copyrights' => 'Copyrights',
     'welcome' => 'Welcome',
+    'website' => 'Website',
     'view' => 'View',
     'Getonlineandgrowfast' => 'Get online and grow fast',
     'fullName' => 'Full Name',
