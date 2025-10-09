@@ -11,10 +11,10 @@
                 <p class="lead fw-normal text-muted mb-0"><?= lang('app.letsWorkTogether') ?></p>
             </div>
             <div class="d-flex justify-content-center fs-2 gap-4">
-                <a class="text-gradient" target='_blank' href="https://youtube.com/abouyaziyd"><i class="bi bi-youtube"></i></a>
+                <a class="text-gradient" target='_blank' href="https://youtube.com/@abouyaziyd"><i class="bi bi-youtube"></i></a>
                 <a class="text-gradient" target='_blank' href="https://t.me/abouyaziyd"><i class="bi bi-telegram"></i></a>
-                <a class="text-gradient" target='_blank' href="https://twitter.com/Abouyaziyd"><i class="bi bi-twitter"></i></a>
-                <a class="text-gradient" target='_blank' href="https://m.facebook.com/abouyaziyd/"><i class="bi bi-facebook"></i></a>
+                <a class="text-gradient" target='_blank' href="https://twitter.com/abouyaziyd"><i class="bi bi-twitter"></i></a>
+                <a class="text-gradient" target='_blank' href="https://m.facebook.com/abouyaziyd"><i class="bi bi-facebook"></i></a>
                 <a class="text-gradient" target='_blank' href="https://wa.me/255682057710"><i class="bi bi-whatsapp"></i></a>
                 <a class="text-gradient" target='_blank' href="tel:+255682057710"><i class="bi bi-phone"></i></a>
                 <a class="text-gradient" target='_blank' href="mailto:abouyaziyd@gmail.com"><i class="bi bi-envelope"></i></a>
