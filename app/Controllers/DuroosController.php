@@ -28,8 +28,8 @@ class DuroosController extends BaseController
         $drs = new Duroos();
 
         $data['title'] = lang('app.project');
-        $data['cat'] = $cat->findAll();
-        $data['pr'] = $drs->find($id);
+        $data['cat'] = $cat->find($id);
+        $data['duroos'] = $drs->where('category_id', $id)->findAll();
         // dd($data);
         
         return view('duroos/show', $data);
