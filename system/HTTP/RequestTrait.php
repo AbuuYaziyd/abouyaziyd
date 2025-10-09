@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of CodeIgniter 4 framework.
  *
@@ -26,6 +28,13 @@ use Config\App;
 trait RequestTrait
 {
     /**
+     * Configuration settings.
+     *
+     * @var App
+     */
+    protected $config;
+
+    /**
      * IP address of the current user.
      *
      * @var string
@@ -35,10 +44,9 @@ trait RequestTrait
     protected $ipAddress = '';
 
     /**
-     * Stores values we've retrieved from
-     * PHP globals.
+     * Stores values we've retrieved from PHP globals.
      *
-     * @var array
+     * @var array{get?: array, post?: array, request?: array, cookie?: array, server?: array}
      */
     protected $globals = [];
 
@@ -51,7 +59,7 @@ trait RequestTrait
      */
     public function getIPAddress(): string
     {
-        if ($this->ipAddress) {
+        if ($this->ipAddress !== '') {
             return $this->ipAddress;
         }
 
@@ -60,11 +68,11 @@ trait RequestTrait
             'valid_ip',
         ];
 
-        $proxyIPs = config(App::class)->proxyIPs;
+        $proxyIPs = $this->config->proxyIPs;
 
         if (! empty($proxyIPs) && (! is_array($proxyIPs) || is_int(array_key_first($proxyIPs)))) {
             throw new ConfigException(
-                'You must set an array with Proxy IP address key and HTTP header name value in Config\App::$proxyIPs.'
+                'You must set an array with Proxy IP address key and HTTP header name value in Config\App::$proxyIPs.',
             );
         }
 
@@ -78,7 +86,7 @@ trait RequestTrait
         // @TODO Extract all this IP address logic to another class.
         foreach ($proxyIPs as $proxyIP => $header) {
             // Check if we have an IP address or a subnet
-            if (strpos($proxyIP, '/') === false) {
+            if (! str_contains($proxyIP, '/')) {
                 // An IP address (and not a subnet) is specified.
                 // We can compare right away.
                 if ($proxyIP === $this->ipAddress) {
@@ -99,7 +107,7 @@ trait RequestTrait
             }
 
             // If the proxy entry doesn't match the IP protocol - skip it
-            if (strpos($proxyIP, $separator) === false) {
+            if (! str_contains($proxyIP, $separator)) {
                 continue;
             }
 
@@ -204,22 +212,26 @@ trait RequestTrait
      * @param array|int|null    $flags
      *
      * @return mixed
+     *
+     * @deprecated 4.4.4 This method does not work from the beginning. Use `env()`.
      */
     public function getEnv($index = null, $filter = null, $flags = null)
     {
+        // @phpstan-ignore-next-line
         return $this->fetchGlobal('env', $index, $filter, $flags);
     }
 
     /**
      * Allows manually setting the value of PHP global, like $_GET, $_POST, etc.
      *
-     * @param mixed $value
+     * @param 'cookie'|'get'|'post'|'request'|'server' $name  Superglobal name (lowercase)
+     * @param mixed                                    $value
      *
      * @return $this
      */
-    public function setGlobal(string $method, $value)
+    public function setGlobal(string $name, $value)
     {
-        $this->globals[$method] = $value;
+        $this->globals[$name] = $value;
 
         return $this;
     }
@@ -234,19 +246,17 @@ trait RequestTrait
      *
      * http://php.net/manual/en/filter.filters.sanitize.php
      *
-     * @param string            $method Input filter constant
-     * @param array|string|null $index
-     * @param int|null          $filter Filter constant
-     * @param array|int|null    $flags  Options
+     * @param 'cookie'|'get'|'post'|'request'|'server' $name   Superglobal name (lowercase)
+     * @param array|int|string|null                    $index
+     * @param int|null                                 $filter Filter constant
+     * @param array|int|null                           $flags  Options
      *
      * @return array|bool|float|int|object|string|null
      */
-    public function fetchGlobal(string $method, $index = null, ?int $filter = null, $flags = null)
+    public function fetchGlobal(string $name, $index = null, ?int $filter = null, $flags = null)
     {
-        $method = strtolower($method);
-
-        if (! isset($this->globals[$method])) {
-            $this->populateGlobals($method);
+        if (! isset($this->globals[$name])) {
+            $this->populateGlobals($name);
         }
 
         // Null filters cause null values to return.
@@ -257,9 +267,9 @@ trait RequestTrait
         if ($index === null) {
             $values = [];
 
-            foreach ($this->globals[$method] as $key => $value) {
+            foreach ($this->globals[$name] as $key => $value) {
                 $values[$key] = is_array($value)
-                    ? $this->fetchGlobal($method, $key, $filter, $flags)
+                    ? $this->fetchGlobal($name, $key, $filter, $flags)
                     : filter_var($value, $filter, $flags);
             }
 
@@ -271,15 +281,15 @@ trait RequestTrait
             $output = [];
 
             foreach ($index as $key) {
-                $output[$key] = $this->fetchGlobal($method, $key, $filter, $flags);
+                $output[$key] = $this->fetchGlobal($name, $key, $filter, $flags);
             }
 
             return $output;
         }
 
         // Does the index contain array notation?
-        if (($count = preg_match_all('/(?:^[^\[]+)|\[[^]]*\]/', $index, $matches)) > 1) {
-            $value = $this->globals[$method];
+        if (is_string($index) && ($count = preg_match_all('/(?:^[^\[]+)|\[[^]]*\]/', $index, $matches)) > 1) {
+            $value = $this->globals[$name];
 
             for ($i = 0; $i < $count; $i++) {
                 $key = trim($matches[0][$i], '[]');
@@ -297,7 +307,7 @@ trait RequestTrait
         }
 
         if (! isset($value)) {
-            $value = $this->globals[$method][$index] ?? null;
+            $value = $this->globals[$name][$index] ?? null;
         }
 
         if (is_array($value)
@@ -310,7 +320,7 @@ trait RequestTrait
             )
         ) {
             // Iterate over array and append filter and flags
-            array_walk_recursive($value, static function (&$val) use ($filter, $flags) {
+            array_walk_recursive($value, static function (&$val) use ($filter, $flags): void {
                 $val = filter_var($val, $filter, $flags);
             });
 
@@ -326,20 +336,22 @@ trait RequestTrait
     }
 
     /**
-     * Saves a copy of the current state of one of several PHP globals
+     * Saves a copy of the current state of one of several PHP globals,
      * so we can retrieve them later.
+     *
+     * @param 'cookie'|'get'|'post'|'request'|'server' $name Superglobal name (lowercase)
      *
      * @return void
      */
-    protected function populateGlobals(string $method)
+    protected function populateGlobals(string $name)
     {
-        if (! isset($this->globals[$method])) {
-            $this->globals[$method] = [];
+        if (! isset($this->globals[$name])) {
+            $this->globals[$name] = [];
         }
 
         // Don't populate ENV as it might contain
         // sensitive data that we don't want to get logged.
-        switch ($method) {
+        switch ($name) {
             case 'get':
                 $this->globals['get'] = $_GET;
                 break;

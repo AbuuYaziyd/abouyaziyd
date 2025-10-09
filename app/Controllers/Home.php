@@ -64,7 +64,7 @@ class Home extends BaseController
         return view('home/terms', $data);
     }
     
-    public function myProject()
+    public function projects()
     {
         $pr = new Project();
         $cat = new Category();

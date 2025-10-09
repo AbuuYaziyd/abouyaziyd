@@ -18,18 +18,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="<?= base_url('assets/css/styles.css') ?>" rel="stylesheet" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDN87JD4VQ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-GDN87JD4VQ');
-    </script>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -37,13 +25,14 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
             <div class="container px-5">
-                <a class="navbar-brand" href="<?= base_url() ?>"><span class="fw-bolder text-primary"><?= lang('app.appName') ?></span></a>
+                <a class="navbar-brand" href="<?= base_url() ?>">
+                    <img class="avatar" src="<?= base_url('assets/img/logo.svg') ?>" height="30px" alt="abouyaziyd" /> <span class="fw-bolder text-primary"><?= lang('app.appName') ?></span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                         <li class="nav-item"><a class="nav-link <?= uri_string() == '' ? 'active' : '' ?>" href="<?= base_url() ?>"><?= lang('app.home') ?></a></li>
-                        <li class="nav-item"><a class="nav-link <?= uri_string() == 'about' ? 'active' : '' ?>" href="<?= base_url('about') ?>"><?= lang('app.about') ?></a></li>
-                        <li class="nav-item"><a class="nav-link <?= uri_string() == 'my-project' ? 'active' : '' ?>" href="<?= base_url('project') ?>"><?= lang('app.projects') ?></a></li>
+                        <li class="nav-item"><a class="nav-link <?= uri_string() == 'about' ? 'active' : '' ?>" href="<?= base_url('about') ?>"><?= lang('app.resume') ?></a></li>
+                        <li class="nav-item"><a class="nav-link <?= uri_string() == 'projects' ? 'active' : '' ?>" href="<?= base_url('projects') ?>"><?= lang('app.projects') ?></a></li>
                         <li class="nav-item"><a class="nav-link <?= uri_string() == 'contact' ? 'active' : '' ?>" href="<?= base_url('contact') ?>"><?= lang('app.contact') ?></a></li>
                     </ul>
                 </div>

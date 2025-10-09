@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of CodeIgniter 4 framework.
  *
@@ -20,7 +22,6 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Exceptions as ExceptionsConfig;
 use Config\Paths;
-use Config\Services;
 use ErrorException;
 use Psr\Log\LogLevel;
 use Throwable;
@@ -106,8 +107,8 @@ class Exceptions
      */
     public function initialize()
     {
-        set_exception_handler([$this, 'exceptionHandler']);
-        set_error_handler([$this, 'errorHandler']);
+        set_exception_handler($this->exceptionHandler(...));
+        set_error_handler($this->errorHandler(...));
         register_shutdown_function([$this, 'shutdownHandler']);
     }
 
@@ -117,7 +118,6 @@ class Exceptions
      * and fire an event that allows custom actions to be taken at this point.
      *
      * @return void
-     * @phpstan-return never|void
      */
     public function exceptionHandler(Throwable $exception)
     {
@@ -125,22 +125,36 @@ class Exceptions
 
         [$statusCode, $exitCode] = $this->determineCodes($exception);
 
+        $this->request = service('request');
+
         if ($this->config->log === true && ! in_array($statusCode, $this->config->ignoreCodes, true)) {
-            log_message('critical', "{message}\nin {exFile} on line {exLine}.\n{trace}", [
-                'message' => $exception->getMessage(),
-                'exFile'  => clean_path($exception->getFile()), // {file} refers to THIS file
-                'exLine'  => $exception->getLine(), // {line} refers to THIS line
-                'trace'   => self::renderBacktrace($exception->getTrace()),
+            $uri       = $this->request->getPath() === '' ? '/' : $this->request->getPath();
+            $routeInfo = '[Method: ' . $this->request->getMethod() . ', Route: ' . $uri . ']';
+
+            log_message('critical', $exception::class . ": {message}\n{routeInfo}\nin {exFile} on line {exLine}.\n{trace}", [
+                'message'   => $exception->getMessage(),
+                'routeInfo' => $routeInfo,
+                'exFile'    => clean_path($exception->getFile()), // {file} refers to THIS file
+                'exLine'    => $exception->getLine(), // {line} refers to THIS line
+                'trace'     => self::renderBacktrace($exception->getTrace()),
             ]);
+
+            // Get the first exception.
+            $last = $exception;
+
+            while ($prevException = $last->getPrevious()) {
+                $last = $prevException;
+
+                log_message('critical', '[Caused by] ' . $prevException::class . ": {message}\nin {exFile} on line {exLine}.\n{trace}", [
+                    'message' => $prevException->getMessage(),
+                    'exFile'  => clean_path($prevException->getFile()), // {file} refers to THIS file
+                    'exLine'  => $prevException->getLine(), // {line} refers to THIS line
+                    'trace'   => self::renderBacktrace($prevException->getTrace()),
+                ]);
+            }
         }
 
-        $this->request  = Services::request();
-        $this->response = Services::response();
-
-        // Get the first exception.
-        while ($prevException = $exception->getPrevious()) {
-            $exception = $prevException;
-        }
+        $this->response = service('response');
 
         if (method_exists($this->config, 'handler')) {
             // Use new ExceptionHandler
@@ -150,7 +164,7 @@ class Exceptions
                 $this->request,
                 $this->response,
                 $statusCode,
-                $exitCode
+                $exitCode,
             );
 
             return;
@@ -160,7 +174,7 @@ class Exceptions
         if (! is_cli()) {
             try {
                 $this->response->setStatusCode($statusCode);
-            } catch (HTTPException $e) {
+            } catch (HTTPException) {
                 // Workaround for invalid HTTP status code.
                 $statusCode = 500;
                 $this->response->setStatusCode($statusCode);
@@ -170,7 +184,7 @@ class Exceptions
                 header(sprintf('HTTP/%s %s %s', $this->request->getProtocolVersion(), $this->response->getStatusCode(), $this->response->getReasonPhrase()), true, $statusCode);
             }
 
-            if (strpos($this->request->getHeaderLine('accept'), 'text/html') === false) {
+            if (! str_contains($this->request->getHeaderLine('accept'), 'text/html')) {
                 $this->respond(ENVIRONMENT === 'development' ? $this->collectVars($exception, $statusCode) : '', $statusCode)->send();
 
                 exit($exitCode);
@@ -194,6 +208,14 @@ class Exceptions
     public function errorHandler(int $severity, string $message, ?string $file = null, ?int $line = null)
     {
         if ($this->isDeprecationError($severity)) {
+            if ($this->isSessionSidDeprecationError($message, $file, $line)) {
+                return true;
+            }
+
+            if ($this->isImplicitNullableDeprecationError($message, $file, $line)) {
+                return true;
+            }
+
             if (! $this->config->logDeprecations || (bool) env('CODEIGNITER_SCREAM_DEPRECATIONS')) {
                 throw new ErrorException($message, 0, $severity, $file, $line);
             }
@@ -209,13 +231,70 @@ class Exceptions
     }
 
     /**
+     * Handles session.sid_length and session.sid_bits_per_character deprecations
+     * in PHP 8.4.
+     */
+    private function isSessionSidDeprecationError(string $message, ?string $file = null, ?int $line = null): bool
+    {
+        if (
+            PHP_VERSION_ID >= 80400
+            && str_contains($message, 'session.sid_')
+        ) {
+            log_message(
+                LogLevel::WARNING,
+                '[DEPRECATED] {message} in {errFile} on line {errLine}.',
+                [
+                    'message' => $message,
+                    'errFile' => clean_path($file ?? ''),
+                    'errLine' => $line ?? 0,
+                ],
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Workaround to implicit nullable deprecation errors in PHP 8.4.
+     *
+     * "Implicitly marking parameter $xxx as nullable is deprecated,
+     *  the explicit nullable type must be used instead"
+     *
+     * @TODO remove this before v4.6.0 release
+     */
+    private function isImplicitNullableDeprecationError(string $message, ?string $file = null, ?int $line = null): bool
+    {
+        if (
+            PHP_VERSION_ID >= 80400
+            && str_contains($message, 'the explicit nullable type must be used instead')
+            // Only Kint and Faker, which cause this error, are logged.
+            && (str_starts_with($message, 'Kint\\') || str_starts_with($message, 'Faker\\'))
+        ) {
+            log_message(
+                LogLevel::WARNING,
+                '[DEPRECATED] {message} in {errFile} on line {errLine}.',
+                [
+                    'message' => $message,
+                    'errFile' => clean_path($file ?? ''),
+                    'errLine' => $line ?? 0,
+                ],
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Checks to see if any errors have happened during shutdown that
      * need to be caught and handle them.
      *
      * @codeCoverageIgnore
      *
      * @return void
-     * @phpstan-return never|void
      */
     public function shutdownHandler()
     {
@@ -229,7 +308,7 @@ class Exceptions
 
         if ($this->exceptionCaughtByExceptionHandler instanceof Throwable) {
             $message .= "\n【Previous Exception】\n"
-                . get_class($this->exceptionCaughtByExceptionHandler) . "\n"
+                . $this->exceptionCaughtByExceptionHandler::class . "\n"
                 . $this->exceptionCaughtByExceptionHandler->getMessage() . "\n"
                 . $this->exceptionCaughtByExceptionHandler->getTraceAsString();
         }
@@ -257,7 +336,7 @@ class Exceptions
             in_array(
                 strtolower(ini_get('display_errors')),
                 ['1', 'true', 'on', 'yes'],
-                true
+                true,
             )
         ) {
             $view = 'error_exception.php';
@@ -280,7 +359,6 @@ class Exceptions
      * Given an exception and status code will display the error to the client.
      *
      * @return void
-     * @phpstan-return never|void
      *
      * @deprecated 4.4.0 No longer used. Moved to BaseExceptionHandler.
      */
@@ -310,7 +388,7 @@ class Exceptions
             exit(1);
         }
 
-        echo(function () use ($exception, $statusCode, $viewFile): string {
+        echo (function () use ($exception, $statusCode, $viewFile): string {
             $vars = $this->collectVars($exception, $statusCode);
             extract($vars, EXTR_SKIP);
 
@@ -328,15 +406,22 @@ class Exceptions
      */
     protected function collectVars(Throwable $exception, int $statusCode): array
     {
-        $trace = $exception->getTrace();
+        // Get the first exception.
+        $firstException = $exception;
+
+        while ($prevException = $firstException->getPrevious()) {
+            $firstException = $prevException;
+        }
+
+        $trace = $firstException->getTrace();
 
         if ($this->config->sensitiveDataInTrace !== []) {
             $trace = $this->maskSensitiveData($trace, $this->config->sensitiveDataInTrace);
         }
 
         return [
-            'title'   => get_class($exception),
-            'type'    => get_class($exception),
+            'title'   => $exception::class,
+            'type'    => $exception::class,
             'code'    => $statusCode,
             'message' => $exception->getMessage(),
             'file'    => $exception->getFile(),
@@ -376,7 +461,7 @@ class Exceptions
             $explode = explode('/', $keyToMask);
             $index   = end($explode);
 
-            if (strpos(strrev($path . '/' . $index), strrev($keyToMask)) === 0) {
+            if (str_starts_with(strrev($path . '/' . $index), strrev($keyToMask))) {
                 if (is_array($args) && array_key_exists($index, $args)) {
                     $args[$index] = '******************';
                 } elseif (
@@ -443,7 +528,7 @@ class Exceptions
                 'errFile' => clean_path($file ?? ''),
                 'errLine' => $line ?? 0,
                 'trace'   => self::renderBacktrace($trace),
-            ]
+            ],
         );
 
         return true;
@@ -460,25 +545,13 @@ class Exceptions
      */
     public static function cleanPath(string $file): string
     {
-        switch (true) {
-            case strpos($file, APPPATH) === 0:
-                $file = 'APPPATH' . DIRECTORY_SEPARATOR . substr($file, strlen(APPPATH));
-                break;
-
-            case strpos($file, SYSTEMPATH) === 0:
-                $file = 'SYSTEMPATH' . DIRECTORY_SEPARATOR . substr($file, strlen(SYSTEMPATH));
-                break;
-
-            case strpos($file, FCPATH) === 0:
-                $file = 'FCPATH' . DIRECTORY_SEPARATOR . substr($file, strlen(FCPATH));
-                break;
-
-            case defined('VENDORPATH') && strpos($file, VENDORPATH) === 0:
-                $file = 'VENDORPATH' . DIRECTORY_SEPARATOR . substr($file, strlen(VENDORPATH));
-                break;
-        }
-
-        return $file;
+        return match (true) {
+            str_starts_with($file, APPPATH)                             => 'APPPATH' . DIRECTORY_SEPARATOR . substr($file, strlen(APPPATH)),
+            str_starts_with($file, SYSTEMPATH)                          => 'SYSTEMPATH' . DIRECTORY_SEPARATOR . substr($file, strlen(SYSTEMPATH)),
+            str_starts_with($file, FCPATH)                              => 'FCPATH' . DIRECTORY_SEPARATOR . substr($file, strlen(FCPATH)),
+            defined('VENDORPATH') && str_starts_with($file, VENDORPATH) => 'VENDORPATH' . DIRECTORY_SEPARATOR . substr($file, strlen(VENDORPATH)),
+            default                                                     => $file,
+        };
     }
 
     /**
@@ -509,7 +582,7 @@ class Exceptions
      */
     public static function highlightFile(string $file, int $lineNumber, int $lines = 15)
     {
-        if (empty($file) || ! is_readable($file)) {
+        if ($file === '' || ! is_readable($file)) {
             return false;
         }
 
@@ -524,7 +597,7 @@ class Exceptions
 
         try {
             $source = file_get_contents($file);
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return false;
         }
 
@@ -560,7 +633,7 @@ class Exceptions
                     "<span class='line highlight'><span class='number'>{$format}</span> %s\n</span>%s",
                     $n + $start + 1,
                     strip_tags($row),
-                    implode('', $tags[0])
+                    implode('', $tags[0]),
                 );
             } else {
                 $out .= sprintf('<span class="line"><span class="number">' . $format . '</span> %s', $n + $start + 1, $row) . "\n";
@@ -589,23 +662,12 @@ class Exceptions
             $idx = $index;
             $idx = str_pad((string) ++$idx, 2, ' ', STR_PAD_LEFT);
 
-            $args = implode(', ', array_map(static function ($value): string {
-                switch (true) {
-                    case is_object($value):
-                        return sprintf('Object(%s)', get_class($value));
-
-                    case is_array($value):
-                        return $value !== [] ? '[...]' : '[]';
-
-                    case $value === null:
-                        return 'null';
-
-                    case is_resource($value):
-                        return sprintf('resource (%s)', get_resource_type($value));
-
-                    default:
-                        return var_export($value, true);
-                }
+            $args = implode(', ', array_map(static fn ($value): string => match (true) {
+                is_object($value)   => sprintf('Object(%s)', $value::class),
+                is_array($value)    => $value !== [] ? '[...]' : '[]',
+                $value === null     => 'null',
+                is_resource($value) => sprintf('resource (%s)', get_resource_type($value)),
+                default             => var_export($value, true),
             }, $frame['args']));
 
             $backtraces[] = sprintf(
@@ -615,7 +677,7 @@ class Exceptions
                 $frame['class'],
                 $frame['type'],
                 $frame['function'],
-                $args
+                $args,
             );
         }
 

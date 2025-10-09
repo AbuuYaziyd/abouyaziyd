@@ -13,7 +13,7 @@ $routes->get('about', 'Home::about');
 $routes->get('privacy', 'Home::privacy');
 $routes->get('terms', 'Home::terms');
 $routes->get('categories', 'Home::categories');
-$routes->get('my-project', 'Home::myProject');
+$routes->get('projects', 'Home::projects');
 $routes->get('pr/(:num)', 'Home::project/$1');
 $routes->get('pr-content/(:num)', 'Home::content/$1');
 
@@ -33,6 +33,15 @@ $routes->post('login', 'AuthController::auth');
 // $routes->get('tasjil','AuthController::reg', ['filter' => 'auth']);
 // $routes->post('tasjil', 'AuthController::regNew', ['filter' => 'auth']);
 $routes->get('logout', 'AuthController::logout');
+
+/*
+ * --------------------------------------------------------------------
+ * Project Routings
+ * --------------------------------------------------------------------
+ */
+$routes->group('project', function ($routes) {
+    $routes->get('/', 'ProjectController::index');
+});
 
 /*
  * --------------------------------------------------------------------

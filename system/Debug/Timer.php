@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of CodeIgniter 4 framework.
  *
@@ -11,7 +13,7 @@
 
 namespace CodeIgniter\Debug;
 
-use RuntimeException;
+use CodeIgniter\Exceptions\RuntimeException;
 
 /**
  * Class Timer
@@ -133,10 +135,10 @@ class Timer
      * Executes callable and measures its time.
      * Returns its return value if any.
      *
-     * @param string $name The name of the timer
-     * @phpstan-param callable(): mixed $callable callable to be executed
+     * @param string            $name     The name of the timer
+     * @param callable(): mixed $callable callable to be executed
      *
-     * @return array|bool|float|int|object|resource|string|null
+     * @return mixed
      */
     public function record(string $name, callable $callable)
     {
