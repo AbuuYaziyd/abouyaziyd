@@ -50,6 +50,7 @@ $routes->group('project', function ($routes) {
  */
 $routes->group('duroos', function ($routes) {
     $routes->get('/', 'DuroosController::index');
+    $routes->get('show/(:num)', 'DuroosController::show/$1');
 });
 
 /*

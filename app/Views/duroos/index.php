@@ -9,7 +9,7 @@
     <div class="row gx-5 justify-content-center">
         <?php foreach ($cat as $key => $dt) : ?>
             <div class="col-md-4">
-                <a href="<?= base_url('pr/'.$dt['id']) ?>" style='text-decoration:none;'>
+                <a href="<?= base_url('duroos/show/'.$dt['id']) ?>" style='text-decoration:none;'>
                     <div class="card shadow border-0 rounded-4 mb-5">
                         <div class="card-body p-3">
                             <div class="row align-items-center gx-5">

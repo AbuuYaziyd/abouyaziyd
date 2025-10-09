@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Category;
+use App\Models\Duroos;
 
 class DuroosController extends BaseController
 {
@@ -16,6 +17,21 @@ class DuroosController extends BaseController
         $data['c'] = $cat;
         // dd($data);
 
-        return view('home/duroos', $data);
+        return view('duroos/index', $data);
+    }
+
+    public function show($id)
+    {
+        helper('form');
+
+        $cat = new Category();
+        $drs = new Duroos();
+
+        $data['title'] = lang('app.project');
+        $data['cat'] = $cat->findAll();
+        $data['pr'] = $drs->find($id);
+        // dd($data);
+        
+        return view('duroos/show', $data);
     }
 }
