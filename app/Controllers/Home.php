@@ -66,11 +66,10 @@ class Home extends BaseController
     
     public function projects()
     {
-        $pr = new Project();
         $cat = new Category();
 
         $data['title'] = lang('app.projects');
-        $data['cat'] = $cat->findAll();
+        $data['cat'] = $cat->where('type', 'system')->findAll();
         $data['c'] = $cat;
         // dd($data);
 

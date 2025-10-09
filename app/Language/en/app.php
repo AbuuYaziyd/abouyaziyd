@@ -70,6 +70,7 @@ return [
     'category' => 'Category',
     'categories' => 'Categories',
     'name' => 'Name',
+    'duroos' => 'Duroos',
     
     // Project
     'project' => 'Project',

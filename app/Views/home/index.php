@@ -16,6 +16,7 @@
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
                         <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="<?= base_url('about') ?>"><?= lang('app.resume') ?></a>
                         <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="<?= base_url('my-project') ?>"><?= lang('app.projects') ?></a>
+                        <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="<?= base_url('duroos') ?>"><?= lang('app.duroos') ?></a>
                     </div>
                 </div>
             </div>

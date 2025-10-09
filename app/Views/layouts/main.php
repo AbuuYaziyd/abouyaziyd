@@ -33,6 +33,7 @@
                         <li class="nav-item"><a class="nav-link <?= uri_string() == '' ? 'active' : '' ?>" href="<?= base_url() ?>"><?= lang('app.home') ?></a></li>
                         <li class="nav-item"><a class="nav-link <?= uri_string() == 'about' ? 'active' : '' ?>" href="<?= base_url('about') ?>"><?= lang('app.resume') ?></a></li>
                         <li class="nav-item"><a class="nav-link <?= uri_string() == 'projects' ? 'active' : '' ?>" href="<?= base_url('projects') ?>"><?= lang('app.projects') ?></a></li>
+                        <li class="nav-item"><a class="nav-link <?= uri_string() == 'duroos' ? 'active' : '' ?>" href="<?= base_url('duroos') ?>"><?= lang('app.duroos') ?></a></li>
                         <li class="nav-item"><a class="nav-link <?= uri_string() == 'contact' ? 'active' : '' ?>" href="<?= base_url('contact') ?>"><?= lang('app.contact') ?></a></li>
                     </ul>
                 </div>
