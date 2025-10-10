@@ -48,4 +48,10 @@ class Category extends Model
         $pr = new Project;
         return $pr->where('cat_id', $id)->countAllResults();
     }
+
+    function countDuroos($id)
+    {
+        $drs = new Duroos();
+        return $drs->where('category_id', $id)->countAllResults();
+    }
 }

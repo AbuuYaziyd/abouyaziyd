@@ -27,11 +27,30 @@ class DuroosController extends BaseController
         $cat = new Category();
         $drs = new Duroos();
 
-        $data['title'] = lang('app.project');
+        $data['title'] = lang('app.duroos');
         $data['cat'] = $cat->find($id);
-        $data['duroos'] = $drs->where('category_id', $id)->findAll();
+        $data['drs'] = $drs;
+        $data['duroos'] = $drs->where('category_id', $id)->select('type')->distinct()->findAll();
         // dd($data);
         
         return view('duroos/show', $data);
+    }
+
+    public function view($id)
+    {
+        helper('form');
+
+        $cat = new Category();
+        $drs = new Duroos();
+
+        $darsa = $drs->find($id);
+
+        $data['title'] = lang('app.duroos');
+        $data['cat'] = $cat->find($darsa['category_id']);
+        $data['drs'] = $drs;
+        $data['darsa'] = $darsa;
+        // dd($data);
+
+        return view('duroos/view', $data);
     }
 }

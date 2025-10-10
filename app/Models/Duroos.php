@@ -43,4 +43,14 @@ class Duroos extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    function darsa($type)
+    {
+        $drs = new Duroos();
+        
+        $darsa = $drs->where('type', $type)->findAll();
+        // dd($darsa);
+
+        return $darsa;
+    }
 }

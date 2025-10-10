@@ -16,7 +16,7 @@
                                 <div class="col text-center text-lg-start mb-4 mb-lg-0">
                                     <div class="bg-light p-4 rounded-4">
                                         <div class="text-<?= $key%2==0?'primary':'secondary' ?> fw-bolder mb-2"><?= $dt['name'] ?></div>
-                                        <div class="small text-muted"><?= $c->countProject($dt['id']) ?> - <?= lang('app.duroos') ?></div>
+                                        <div class="small text-muted"><?= $c->countDuroos($dt['id']) ?> - <?= lang('app.duroos') ?></div>
                                     </div>
                                 </div>
                             </div>
