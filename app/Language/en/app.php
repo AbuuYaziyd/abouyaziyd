@@ -71,6 +71,8 @@ return [
     'categories' => 'Categories',
     'name' => 'Name',
     'duroos' => 'Duroos',
+    'doYouReallyWantToDelete' => 'Unataka kufuta Data',
+    'afterDeleteItsGone' => 'Baada ya kufuta Data hazitapatikana!',
     
     // Project
     'project' => 'Project',

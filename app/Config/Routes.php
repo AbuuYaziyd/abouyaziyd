@@ -57,6 +57,8 @@ $routes->group('duroos', function ($routes) {
     $routes->get('type/(:segment)', 'DuroosController::type/$1', ['filter' => 'auth']);
     $routes->post('create', 'DuroosController::create', ['filter' => 'auth']);
     $routes->get('edit/(:num)', 'DuroosController::edit/$1', ['filter' => 'auth']);
+    $routes->post('update', 'DuroosController::update', ['filter' => 'auth']);
+    $routes->get('delete/(:num)', 'DuroosController::delete/$1', ['filter' => 'auth']);
 });
 
 /*

@@ -123,7 +123,7 @@ class DuroosController extends BaseController
         }
 
 
-        $d = [
+        $data = [
             'category_id' => $this->request->getVar('category_id'),
             'info' => $this->request->getVar('info'),
             'type' => $this->request->getVar('type'),
@@ -132,7 +132,7 @@ class DuroosController extends BaseController
         ];
         // dd($d);
 
-        $drs->save($d);
+        $drs->save($data);
 
         return redirect()->to('duroos/type/' . $type)->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
     }
@@ -163,5 +163,39 @@ class DuroosController extends BaseController
         // dd($data);
 
         return view('duroos/edit', $data);
+    }
+
+    public function update()
+    {
+        // dd($this->request->getVar());
+
+        helper('form');
+
+        $drs = new Duroos();
+
+        $id = $this->request->getVar('id');
+        $type = $this->request->getVar('type');
+        // dd($type, $id);
+
+        $data = [
+            'info' => $this->request->getVar('info'),
+            'type' => $this->request->getVar('type'),
+            'link' => $this->request->getVar('link'),
+            'name' => $this->request->getVar('name'),
+        ];
+        // dd($data);
+
+        $drs->update($id, $data);
+
+        return redirect()->to('duroos/type/' . $type)->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
+    }
+
+    public function delete($id)
+    {
+        $drs = new Duroos();
+
+        $drs->delete($id);
+
+        return redirect()->to('duroos/page')->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
     }
 }

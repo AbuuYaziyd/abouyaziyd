@@ -30,6 +30,8 @@ return [
     'contactMe' => 'Contact Me',
     'menu' => 'Menu',
     'callMe' => 'Call Me',
+    'doYouReallyWantToDelete' => 'Unataka kufuta Data',
+    'afterDeleteItsGone' => 'Baada ya kufuta Data hazitapatikana!',
 
     // Auth
     'email' => 'Email',
