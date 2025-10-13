@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Duroos;
+use App\Models\Category;
 
-$drs = new Duroos();
-$drs_count = $drs->select('type')->distinct()->countAllResults();
+$cat = new Category();
+$drs_count = $cat->where('type', 'duroos')->countAllResults();
 // dd($drs_count);
 
 ?>

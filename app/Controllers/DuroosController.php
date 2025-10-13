@@ -57,9 +57,10 @@ class DuroosController extends BaseController
     public function page()
     {
         $drs = new Duroos();
+        $cat = new Category();
 
         $data['title'] = lang('app.duroos');
-        $data['drs_type'] = $drs->select('type')->distinct()->findAll();
+        $data['categories'] = $cat->where('type', 'duroos')->findAll();
         $data['drs'] = $drs;
         // dd($data);
 
