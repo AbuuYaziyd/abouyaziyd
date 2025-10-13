@@ -50,8 +50,11 @@ $routes->group('project', function ($routes) {
  */
 $routes->group('duroos', function ($routes) {
     $routes->get('/', 'DuroosController::index');
+    $routes->get('page', 'DuroosController::page', ['filter' => 'auth']);
     $routes->get('show/(:num)', 'DuroosController::show/$1');
     $routes->get('view/(:num)', 'DuroosController::view/$1');
+    $routes->get('type/(:segment)', 'DuroosController::type/$1');
+    $routes->get('edit/(:num)', 'DuroosController::edit/$1');
 });
 
 /*

@@ -20,6 +20,20 @@ class DuroosController extends BaseController
         return view('duroos/index', $data);
     }
 
+    public function page()
+    {
+        $cat = new Category();
+        $drs = new Duroos();
+
+        $data['title'] = lang('app.duroos');
+        $data['cat'] = $cat->where('type', 'duroos')->findAll();
+        $data['drs_type'] = $drs->select('type')->distinct()->findAll();
+        $data['drs'] = $drs;
+        // dd($data);
+
+        return view('duroos/page', $data);
+    }
+
     public function show($id)
     {
         helper('form');
@@ -52,5 +66,33 @@ class DuroosController extends BaseController
         // dd($data);
 
         return view('duroos/view', $data);
+    }
+
+    public function type($type)
+    {
+        $drs = new Duroos();
+
+        $data['title'] = lang('app.duroos');
+        $data['drs'] = $drs;
+        $data['type'] = $type;
+        $data['duroos'] = $drs->where('type', $type)->findAll();
+        // dd($data);
+
+        return view('duroos/type', $data);
+    }
+
+    public function edit($id)
+    {
+        helper('form');
+
+        $drs = new Duroos();
+
+        $data['title'] = lang('app.duroos');
+        $data['drs'] = $drs;
+        $data['type'] = $drs->select('type')->distinct()->findAll();
+        $data['darsa'] = $drs->find($id);
+        // dd($data);
+
+        return view('duroos/edit', $data);
     }
 }
