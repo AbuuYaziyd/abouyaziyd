@@ -22,7 +22,7 @@
               <tbody>
                 <?php foreach ($duroos as $dt) : ?>
                   <tr>
-                    <td><a href="<?= base_url('duroos/view/' . $dt['id']) ?>" target="_blank" class="badge badge-<?= $dt['status'] == 'done' ? 'success' : 'secondary' ?>"><?= $dt['name'] ?></a></td>
+                    <td><a href="<?= base_url('duroos/view/' . $dt['id']) ?>" target="_blank" class="badge badge-secondary"><?= $dt['name'] ?></a></td>
                     <td><?= substr($dt['info'], 0, 30) ?>...</td>
                     <td>
                       <a href="<?= base_url("duroos/edit/" . $dt['id']) ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> <?= lang('app.edit') ?></a>

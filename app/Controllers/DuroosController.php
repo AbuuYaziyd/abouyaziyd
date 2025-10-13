@@ -117,34 +117,24 @@ class DuroosController extends BaseController
             $data['type'] = $type;
             $data['drs'] = $drs;
             $data['errors'] = $this->validator->getErrors();
-            dd($data);
+            // dd($data);
 
-            return redirect()->back()->with('icon', 'error')->with('title', $data['errors']);
+            return view('duroos/add', $data);
         }
 
-        if (!empty($_FILES['pr_img']['name'])) {
-            $img = $this->request->getFile('pr_img');
-            $ext = $img->getClientExtension();
-            $name = date('ymdHis') . '.' . $ext;
-            $loc = $plc . date('ymdHis') . '.' . $ext;
-            // dd($name);
-
-            $img->move($plc, $name);
-        }
 
         $d = [
-            'cat_id' => $this->request->getVar('cat_id'),
+            'category_id' => $this->request->getVar('category_id'),
             'info' => $this->request->getVar('info'),
-            'status' => $this->request->getVar('status'),
+            'type' => $this->request->getVar('type'),
             'link' => $this->request->getVar('link'),
             'name' => $this->request->getVar('name'),
-            'pr_img' => $loc,
         ];
         // dd($d);
 
-        $pr->save($d);
+        $drs->save($d);
 
-        return redirect()->to('project')->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
+        return redirect()->to('duroos/type/' . $type)->with('toast', 'success')->with('title', lang('app.done'))->with('text', lang('app.successfully'));
     }
 
     public function type($type)
