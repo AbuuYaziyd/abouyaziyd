@@ -50,11 +50,13 @@ $routes->group('project', function ($routes) {
  */
 $routes->group('duroos', function ($routes) {
     $routes->get('/', 'DuroosController::index');
-    $routes->get('page', 'DuroosController::page', ['filter' => 'auth']);
     $routes->get('show/(:num)', 'DuroosController::show/$1');
     $routes->get('view/(:num)', 'DuroosController::view/$1');
-    $routes->get('type/(:segment)', 'DuroosController::type/$1');
-    $routes->get('edit/(:num)', 'DuroosController::edit/$1');
+    $routes->get('page', 'DuroosController::page', ['filter' => 'auth']);
+    $routes->get('add/(:segment)', 'DuroosController::add/$1', ['filter' => 'auth']);
+    $routes->get('type/(:segment)', 'DuroosController::type/$1', ['filter' => 'auth']);
+    $routes->post('create', 'DuroosController::create', ['filter' => 'auth']);
+    $routes->get('edit/(:num)', 'DuroosController::edit/$1', ['filter' => 'auth']);
 });
 
 /*
