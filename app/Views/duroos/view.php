@@ -12,7 +12,7 @@
                     <h2 class="text-gradient fw-bolder mb-0"><b><?= $darsa['name'] ?></b></h2>
 
                     <audio controls>
-                        <source src="https://archive.org/download/darsa_subulu_salami_fiymaa_laa_yanbaghi_2025/001%20SBL-HDTH-01.mp3" type="audio/mpeg">
+                        <source src="<?= $darsa['link'] ?>" type="audio/mpeg">
                     </audio>
                 </div>
                 <div class="card shadow border-0 rounded-4 mb-5">
