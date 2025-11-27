@@ -66,8 +66,11 @@
             <div class="content-header">
                 <div class="container">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                             <h1 class="m-0"><b><?= $title ?></b></h1>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $this->renderSection('bread') ?>
                         </div>
                     </div>
                 </div>

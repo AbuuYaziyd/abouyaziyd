@@ -1,4 +1,9 @@
 <?= $this->extend('layouts/app') ?>
+<?= $this->section('bread') ?>
+<ol class="breadcrumb float-sm-right">
+  <li class="breadcrumb-item active">Dashboard</li>
+</ol>
+<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 <section class="content">
