@@ -14,8 +14,10 @@
     <?php $darsa = $drs->select('type')->distinct()->findAll(); ?>
     <div class="card direct-chat direct-chat-primary">
       <div class="card-header">
-        <h3 class="card-title"><b><?= $ct['name'] ?> -
-            <span class="badge badge-primary"><?= count($darsa) ?></span></b></h3>
+        <h3 class="card-title">
+          <b><?= $ct['name'] ?> -</b>
+          <span class="btn btn-primary btn-sm" data-toggle="modal" data-target="#type<?= $ct['id'] ?>">Ongeza Mlango</span>
+        </h3>
 
         <div class="card-tools">
           <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -49,6 +51,30 @@
             </div>
           </form>
         </div> -->
+      </div>
+    </div>
+    <div class="modal fade" id="type<?= $ct['id'] ?>">
+      <div class="modal-dialog type<?= $ct['id'] ?>">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title"><b>Ongeza Mlango</b></h4>
+          </div>
+          <?= form_open('darsa/create') ?>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-12 mb-2">
+                  <label> <?= lang('app.name') ?></label>
+                  <input type="text" class="form-control" name="name" placeholder="<?= lang('app.name') ?>" value="<?= old('name') ?>">
+                </div>
+                <input type="hidden" name="category_id" value="<?= $ct['id'] ?>">
+              </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Funga</button>
+              <button type="submit" class="btn btn-primary"><?= lang('app.submit') ?></button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   <?php endforeach ?>

@@ -56,6 +56,8 @@ class DuroosController extends BaseController
 
     public function page()
     {
+        helper('form');
+        
         $drs = new Duroos();
         $cat = new Category();
 
