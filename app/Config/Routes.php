@@ -33,6 +33,7 @@ $routes->post('login', 'AuthController::auth');
 // $routes->get('tasjil','AuthController::reg', ['filter' => 'auth']);
 // $routes->post('tasjil', 'AuthController::regNew', ['filter' => 'auth']);
 $routes->get('logout', 'AuthController::logout');
+$routes->get('dashboard', 'UserController::dashboard', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

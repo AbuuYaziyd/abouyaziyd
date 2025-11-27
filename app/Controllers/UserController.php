@@ -19,6 +19,18 @@ class UserController extends BaseController
         }
     }
 
+    public function dashboard()
+    {
+        $data['title'] = lang('app.dashboard');
+        // dd($data);
+
+        if (session('role') == 'admin') {
+            //     return redirect()->to('admin');
+            // } elseif(session('role') == 'admin') {
+            return view('user/dashboard', $data);
+        }
+    }
+
     public function profile()
     {
         $usr = new User();

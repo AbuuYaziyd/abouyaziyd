@@ -225,7 +225,7 @@ class AuthController extends BaseController
         $data['title'] = lang('app.login');
 
         if (session('isLoggedIn') == true) {
-            return redirect()->to('user');
+            return redirect()->to('dashboard');
         } else {
             helper('form');
             return view('auth/login', $data);
@@ -263,13 +263,13 @@ class AuthController extends BaseController
                     'isLoggedIn' => TRUE
                 ];
                 $session->set($sessData);
-                return redirect()->to('user');
+                return redirect()->to('dashboard');
                 
             }else {
-                return redirect()->to('/')->with('text', lang('app.wrongData'))->with('title', lang('app.error'))->with('toast', 'error');
+                return redirect()->to('login')->with('text', lang('app.wrongData'))->with('title', lang('app.error'))->with('toast', 'error');
             }
         }else {
-            return redirect()->to('/')->with('id', lang('app.notFound'));
+            return redirect()->to('login')->with('id', lang('app.notFound'));
         }
     }
 
