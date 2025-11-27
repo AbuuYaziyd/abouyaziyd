@@ -1,14 +1,13 @@
 <?= $this->extend('layouts/app') ?>
 <?= $this->section('content') ?>
 
-<div class="content-header"></div>
 <section class="content">
   <div class="container-fluid">
     <div class="row">
       <section class="col">
         <div class="card">
           <div class="card-header">
-            <h3><b><?= lang('app.duroos') ?> </b>| <?= $type ?> - <?= count($duroos) ?> <a href="<?= base_url('duroos/add/' . $type) ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-plus-circle"></i> <?= lang('app.add') ?></a></h3>
+            <h3><b><?= $type['name'] ?></b> | <?= count($duroos) ?> <a href="<?= base_url('duroos/add/' . $type['id']) ?>" class="btn btn-success btn-sm float-right"><i class="fas fa-plus-circle"></i> <?= lang('app.add') ?></a></h3>
           </div>
           <div class="card-body">
             <table class="table table-bordered table-striped dtTable">

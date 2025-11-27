@@ -18,7 +18,7 @@ class DarsaTable extends Migration
             'category_id' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
-                'unique' => true,
+                'null' => true,
             ],
             'name' => [
                 'type'       => 'VARCHAR',

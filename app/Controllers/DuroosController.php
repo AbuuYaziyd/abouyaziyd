@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Category;
+use App\Models\Darsa;
 use App\Models\Duroos;
 
 class DuroosController extends BaseController
@@ -57,13 +58,15 @@ class DuroosController extends BaseController
     public function page()
     {
         helper('form');
-        
-        $drs = new Duroos();
+
+        $drs = new Darsa();
+        $durs = new Duroos();
         $cat = new Category();
 
         $data['title'] = lang('app.duroos');
         $data['categories'] = $cat->where('type', 'duroos')->findAll();
-        $data['drs'] = $drs;
+        $data['darsa'] = $drs->findAll();
+        $data['durs'] = $durs;
         // dd($data);
 
         return view('duroos/page', $data);
@@ -142,12 +145,13 @@ class DuroosController extends BaseController
 
     public function type($type)
     {
-        $drs = new Duroos();
+        $durs = new Duroos();
+        $drs = new Darsa();
 
         $data['title'] = lang('app.duroos');
-        $data['drs'] = $drs;
-        $data['type'] = $type;
-        $data['duroos'] = $drs->where('type', $type)->findAll();
+        $data['drs'] = $durs;
+        $data['type'] = $drs->find($type);
+        $data['duroos'] = $durs->where('type', $type)->findAll();
         // dd($data);
 
         return view('duroos/type', $data);

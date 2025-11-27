@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<?= base_url('app-assets/dist/css/adminlte.min.css') ?>">
     <link rel="apple-touch-icon" href="<?= base_url('app-assets/logo.svg') ?> ">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('app-assets/logo.svg') ?> ">
-    <script src="<?= base_url('app-assets/plugins/sweetalert2/sweetalert2.min.js') ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
@@ -94,6 +94,23 @@
     <script src="<?= base_url('app-assets/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= base_url('app-assets/dist/js/adminlte.js') ?>"></script>
     <script src="<?= base_url('app-assets/dist/js/demo.js') ?>"></script>
+
+    <?php if (session()->getFlashdata('toast')) : ?>
+        <script>
+            $(document).ready(function() {
+                var Toast = Swal.mixin({
+                    position: 'center',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+                Toast.fire({
+                    icon: '<?= session()->getFlashdata('toast') ?>',
+                    title: '<?= session()->getFlashdata('title') ?>',
+                    text: '<?= session()->getFlashdata('text') ?>',
+                })
+            });
+        </script>
+    <?php endif ?>
 </body>
 
 </html>

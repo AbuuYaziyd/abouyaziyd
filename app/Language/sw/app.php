@@ -60,6 +60,7 @@ return [
     // Category
     'category' => 'Category',
     'categories' => 'Categories',
+    'sorry' => 'Samahani',
     'name' => 'Name',
     
     // Project

@@ -65,6 +65,7 @@ return [
     // Admin
     'setting' => 'Setting',
     'settings' => 'Settings',
+    'sorry' => 'Samahani',
     
     // Category
     'category' => 'Category',

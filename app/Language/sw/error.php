@@ -13,4 +13,5 @@ return [
     'mime' => 'Picha lazima iwe: JPG/PNG',
     'max_size' => 'Saizi isizidi - 2MB',
     'valid_email' => 'Barua pepe haipo sawa',
+    'errorOccured' => 'Kuna tatizo limetokea!',
 ];
