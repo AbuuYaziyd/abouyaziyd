@@ -10,12 +10,12 @@
         <section>
             <div class="card shadow border-0 rounded-4 mb-5">
                 <div class="card-body p-5">
-                    <?php foreach ($duroos as $dr) : ?>
-                        <?php $darsa = $drs->darsa($dr['type']) ?>
+                    <?php foreach ($type as $dr) : ?>
+                        <?php $darsa = $drs->darsa($dr['id']) ?>
                         <div class="mb-5">
                             <div class="d-flex align-items-center mb-4">
                                 <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-mic"></i></div>
-                                <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline"><?= $dr['type'] ?></span></h3>
+                                <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline"><?= $dr['name'] ?></span></h3>
                             </div>
                             <div class="row row-cols-1 row-cols-md-3 mb-3">
                                 <?php foreach ($darsa as $d) : ?>

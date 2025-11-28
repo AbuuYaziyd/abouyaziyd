@@ -27,11 +27,12 @@ class DuroosController extends BaseController
 
         $cat = new Category();
         $drs = new Duroos();
+        $typ = new Darsa();
 
         $data['title'] = lang('app.duroos');
         $data['cat'] = $cat->find($id);
         $data['drs'] = $drs;
-        $data['duroos'] = $drs->where('category_id', $id)->select('type')->distinct()->findAll();
+        $data['type'] = $typ->where('category_id', $id)->findAll();
         // dd($data);
         
         return view('duroos/show', $data);

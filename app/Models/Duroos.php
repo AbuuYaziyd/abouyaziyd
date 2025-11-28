@@ -54,9 +54,19 @@ class Duroos extends Model
     {
         $drs = new Duroos();
         
-        $darsa = $drs->where('type', $type)->findAll();
-        // dd($darsa);
+        $data = $drs->where('type', $type)->findAll();
+        // dd($data);
 
-        return $darsa;
+        return $data;
+    }
+
+    function type($id)
+    {
+        $drs = new Darsa();
+        
+        $data = $drs->find($id);
+        // dd($data);
+
+        return $data;
     }
 }
