@@ -54,7 +54,7 @@
                     <span class="mx-1">&middot;</span>
                     <a class="small" href="<?= base_url('terms') ?>"><?= lang('app.terms') ?></a>
                     <span class="mx-1">&middot;</span>
-                    <a class="small" href="<?= base_url('login') ?>" target="_blank"><?= lang('app.login') ?></a>
+                    <a class="small" href="<?= base_url('login') ?>" target="_blank"><?= session('isLoggedIn') != true ? lang('app.login') : lang('app.dashboard') ?></a>
                 </div>
             </div>
         </div>
