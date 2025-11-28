@@ -78,11 +78,12 @@ class DuroosController extends BaseController
         helper('form');
 
         $drs = new Duroos();
+        $typ = new Darsa();
 
         $data['title'] = lang('app.duroos');
-        $data['types'] = $drs->select('type')->distinct()->findAll();
+        $data['types'] = $typ->findAll();
         $data['darsa'] = $drs->where('type', $type)->first();
-        $data['type'] = $type;
+        $data['type'] = $typ->find($type);
         $data['drs'] = $drs;
         // dd($data);
 

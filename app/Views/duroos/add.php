@@ -25,7 +25,7 @@
                 <label><?= lang('app.category') ?></label>
                 <select name="type" class="custom-select">
                   <?php foreach ($types as $dt) : ?>
-                    <option value="<?= $dt['type'] ?>" <?= $type == $dt['type'] ? 'selected' : '' ?>><?= $dt['type'] ?></option>
+                    <option value="<?= $dt['id'] ?>" <?= $type['id'] == $dt['id'] ? 'selected' : '' ?>><?= $dt['name'] ?></option>
                   <?php endforeach ?>
                 </select>
               </div>
