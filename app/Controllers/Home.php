@@ -111,4 +111,39 @@ class Home extends BaseController
 
         return view('home/content', $data);
     }
+
+    function manifest()
+    {
+        $manifest = [
+            "short_name" => "AB Solutions",
+            "name" => "AB Solutions",
+            "icons" => [
+                [
+                    "src" => "./assets/img/logo.jpg",
+                    "type" => "image/svg+xml",
+                    "sizes" => "512x512"
+                ],
+                [
+                    "src" => "./assets/img/logo.jpg",
+                    "type" => "image/jpg",
+                    "sizes" => "512x512"
+                ],
+                [
+                    "src" => "./assets/img/logo.jpg",
+                    "type" => "image/jpg",
+                    "sizes" => "192x192",
+                    "purpose" => "maskable"
+                ]
+            ],
+            "start_url" => "./",
+            "scope" => ".",
+            "background_color" => "#0096FF",
+            "display" => "standalone",
+            "theme_color" => "#06694c",
+            "description" => "AB Solutions - Abou Yaziyd"
+        ];
+
+        // Encode to a formatted string
+        return json_encode($manifest);    
+    }
 }

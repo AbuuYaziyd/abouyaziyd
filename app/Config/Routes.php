@@ -14,6 +14,7 @@ $routes->get('privacy', 'Home::privacy');
 $routes->get('terms', 'Home::terms');
 $routes->get('test', 'Home::test');
 $routes->get('categories', 'Home::categories');
+$routes->get('manifest', 'Home::manifest');
 $routes->get('projects', 'Home::projects');
 $routes->get('pr/(:num)', 'Home::project/$1');
 $routes->get('pr-content/(:num)', 'Home::content/$1');
