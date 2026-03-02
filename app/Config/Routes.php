@@ -12,6 +12,7 @@ $routes->post('contact', 'Home::send');
 $routes->get('about', 'Home::about');
 $routes->get('privacy', 'Home::privacy');
 $routes->get('terms', 'Home::terms');
+$routes->get('test', 'Home::test');
 $routes->get('categories', 'Home::categories');
 $routes->get('projects', 'Home::projects');
 $routes->get('pr/(:num)', 'Home::project/$1');

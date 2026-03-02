@@ -63,6 +63,14 @@ class Home extends BaseController
 
         return view('home/terms', $data);
     }
+
+    public function test()
+    {
+        $data['title'] = 'Calendar';
+        // dd($data);
+
+        return view('home/test', $data);
+    }
     
     public function projects()
     {

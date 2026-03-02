@@ -8,6 +8,7 @@
     <meta name="author" content="" />
     <title><?= lang('app.appName') ?> - <?= $title ?></title>
     <!-- Favicon-->
+    <link rel="manifest" href="<?= base_url('manifest') ?>" />
     <link rel="apple-touch-icon" href="<?= base_url('assets/img/logo.svg') ?>">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/img/logo.svg') ?>" />
     <!-- Custom Google font-->
