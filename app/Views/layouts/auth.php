@@ -9,7 +9,8 @@
   <meta name="description" content="AB Solutions, Come join us and Build the Future!">
   <meta name="keywords" content="AB Solutions">
   <meta name="author" content="abouyaziyd">
-  <meta name="theme-color" content="#738d6d">
+  <meta name="theme-color" content="#0096FF">
+  <link rel="manifest" href="./manifest.json" />
   <title><?= lang('app.appName') ?> | <?= $title ?></title>
   <link rel="apple-touch-icon" href="<?= base_url('app-assets/logo.svg') ?> ">
   <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('app-assets/logo.svg') ?> ">

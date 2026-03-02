@@ -2,13 +2,17 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="AB Solutions, Come join us and Build the Future!">
+    <meta name="keywords" content="AB Solutions">
+    <meta name="author" content="abouyaziyd">
+    <meta name="theme-color" content="#0096FF">
+    <link rel="manifest" href="./manifest.json" />
     <title><?= lang('app.appName') ?> - <?= $title ?></title>
     <!-- Favicon-->
-    <link rel="manifest" href="<?= base_url('manifest') ?>" />
     <link rel="apple-touch-icon" href="<?= base_url('assets/img/logo.svg') ?>">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/img/logo.svg') ?>" />
     <!-- Custom Google font-->
